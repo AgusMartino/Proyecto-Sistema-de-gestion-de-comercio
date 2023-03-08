@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id_permiso" />
+    </Key>
+    <Property Name="Id_permiso" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Permiso" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pregunta_seguridad">
+    <Key>
+      <PropertyRef Name="Id_Pregunta_Seguridad" />
+    </Key>
+    <Property Name="Id_Pregunta_Seguridad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Pregunta_seguridad" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id_token" />
+    </Key>
+    <Property Name="Id_token" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Expiracion" Type="datetime" />
+    <Property Name="Salt" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdPregunta" Type="uniqueidentifier" />
+    <Property Name="Respuesta" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="DNI" Type="varchar" MaxLength="20" />
+    <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Salt" Type="varchar" MaxLength="100" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario_Permiso">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+      <PropertyRef Name="Id_permiso" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_permiso" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="TSStoreContainer">
+    <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pregunta_seguridad" EntityType="Self.Pregunta_seguridad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario_Permiso" EntityType="Self.Usuario_Permiso" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

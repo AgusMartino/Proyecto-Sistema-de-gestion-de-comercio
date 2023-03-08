@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LPPAModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Permiso">
+      <EntityTypeMapping TypeName="LPPAModel.Permiso">
+        <MappingFragment StoreEntitySet="Permiso">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Id_permiso" ColumnName="Id_permiso" />
+          <ScalarProperty Name="Permiso1" ColumnName="Permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pregunta_seguridad">
+      <EntityTypeMapping TypeName="LPPAModel.Pregunta_seguridad">
+        <MappingFragment StoreEntitySet="Pregunta_seguridad">
+          <ScalarProperty Name="Id_Pregunta_Seguridad" ColumnName="Id_Pregunta_Seguridad" />
+          <ScalarProperty Name="Pregunta_seguridad1" ColumnName="Pregunta_seguridad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Token">
+      <EntityTypeMapping TypeName="LPPAModel.Token">
+        <MappingFragment StoreEntitySet="Token">
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Id_token" ColumnName="Id_token" />
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="Token1" ColumnName="Token" />
+          <ScalarProperty Name="Expiracion" ColumnName="Expiracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="LPPAModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+          <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario_Permiso">
+      <EntityTypeMapping TypeName="LPPAModel.Usuario_Permiso">
+        <MappingFragment StoreEntitySet="Usuario_Permiso">
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="Id_permiso" ColumnName="Id_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Template.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id_permiso" />
+    </Key>
+    <Property Name="Id_permiso" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Permiso" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pregunta_seguridad">
+    <Key>
+      <PropertyRef Name="Id_Pregunta_Seguridad" />
+    </Key>
+    <Property Name="Id_Pregunta_Seguridad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Pregunta_seguridad" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="Id_token" />
+    </Key>
+    <Property Name="Id_token" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Expiracion" Type="datetime" />
+    <Property Name="Salt" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdPregunta" Type="uniqueidentifier" />
+    <Property Name="Respuesta" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="DNI" Type="varchar" MaxLength="20" />
+    <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Salt" Type="varchar" MaxLength="100" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario_Permiso">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+      <PropertyRef Name="Id_permiso" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_permiso" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TP_Integrador_G4_LPPA.dbo.vista_Usuario_Permiso' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vista_Usuario_Permiso">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+      <PropertyRef Name="Id_permiso" />
+      <PropertyRef Name="Nombre_Usuario" />
+      <PropertyRef Name="Permiso" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_permiso" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Permiso" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TP_Integrador_G4_LPPA.dbo.vista_Usuario_Pregunta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vista_Usuario_Pregunta">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+      <PropertyRef Name="Id_Pregunta_Seguridad" />
+      <PropertyRef Name="Nombre_Usuario" />
+      <PropertyRef Name="Pregunta_seguridad" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_Pregunta_Seguridad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Pregunta_seguridad" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TP_Integrador_G4_LPPA.dbo.vista_Usuario_Token' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vista_Usuario_Token">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+      <PropertyRef Name="Id_token" />
+      <PropertyRef Name="Nombre_Usuario" />
+      <PropertyRef Name="Token" />
+    </Key>
+    <Property Name="Id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id_token" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Expiracion" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="TemplateStoreContainer">
+    <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pregunta_seguridad" EntityType="Self.Pregunta_seguridad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario_Permiso" EntityType="Self.Usuario_Permiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vista_Usuario_Permiso" EntityType="Self.vista_Usuario_Permiso" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vista_Usuario_Permiso].[Id_usuario] AS [Id_usuario], 
+    [vista_Usuario_Permiso].[Id_permiso] AS [Id_permiso], 
+    [vista_Usuario_Permiso].[Nombre_Usuario] AS [Nombre_Usuario], 
+    [vista_Usuario_Permiso].[Permiso] AS [Permiso]
+    FROM [dbo].[vista_Usuario_Permiso] AS [vista_Usuario_Permiso]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vista_Usuario_Pregunta" EntityType="Self.vista_Usuario_Pregunta" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vista_Usuario_Pregunta].[Id_usuario] AS [Id_usuario], 
+    [vista_Usuario_Pregunta].[Id_Pregunta_Seguridad] AS [Id_Pregunta_Seguridad], 
+    [vista_Usuario_Pregunta].[Nombre_Usuario] AS [Nombre_Usuario], 
+    [vista_Usuario_Pregunta].[Pregunta_seguridad] AS [Pregunta_seguridad]
+    FROM [dbo].[vista_Usuario_Pregunta] AS [vista_Usuario_Pregunta]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vista_Usuario_Token" EntityType="Self.vista_Usuario_Token" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vista_Usuario_Token].[Id_usuario] AS [Id_usuario], 
+    [vista_Usuario_Token].[Id_token] AS [Id_token], 
+    [vista_Usuario_Token].[Nombre_Usuario] AS [Nombre_Usuario], 
+    [vista_Usuario_Token].[Token] AS [Token], 
+    [vista_Usuario_Token].[Expiracion] AS [Expiracion]
+    FROM [dbo].[vista_Usuario_Token] AS [vista_Usuario_Token]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
