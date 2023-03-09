@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Api_Template
+namespace Api_control_comercio
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

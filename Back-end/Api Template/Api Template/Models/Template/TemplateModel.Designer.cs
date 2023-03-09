@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'D:\Proyectos\Estudio\UAI\Materias\MCGA\TP Final\MCGA-BACK\Api Template\Api Template\Models\Template\TemplateModel.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'R:\Agus\Proyecto-Sistema-de-gestion-de-comercio\Back-end\Api Template\Api Template\Models\Template\TemplateModel.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

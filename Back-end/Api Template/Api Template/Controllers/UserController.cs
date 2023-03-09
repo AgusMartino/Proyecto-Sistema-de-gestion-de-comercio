@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using Api_Template.Entities;
-using Api_Template.Models.Template;
-using Api_Template.Utils;
-using Api_Template.Entities.Exceptions;
-using Api_Template.Contracts;
+using Api_control_comercio.Entities;
+using Api_control_comercio.Models.Template;
+using Api_control_comercio.Utils;
+using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Contracts;
 
-namespace Api_Template.Controllers
+namespace Api_control_comercio.Controllers
 {
     //[Authorize]
     [AllowAnonymous]

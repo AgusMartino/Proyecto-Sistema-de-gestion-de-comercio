@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace Api_Template.Contracts
+namespace Api_control_comercio.Contracts
 {
     public interface IGenericCRUD<T> where T : new()
     {

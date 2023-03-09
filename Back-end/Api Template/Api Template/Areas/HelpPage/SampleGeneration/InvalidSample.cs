@@ -1,6 +1,6 @@
 using System;
 
-namespace Api_Template.Areas.HelpPage
+namespace Api_control_comercio.Areas.HelpPage
 {
     /// <summary>
     /// This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.

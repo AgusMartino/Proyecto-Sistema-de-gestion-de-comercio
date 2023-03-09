@@ -1,4 +1,4 @@
-﻿namespace Api_Template.Entities
+﻿namespace Api_control_comercio.Entities
 {
     public class LoginBody
     {

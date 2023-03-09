@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Api_Template.Areas.HelpPage
+namespace Api_control_comercio.Areas.HelpPage
 {
     /// <summary>
     /// This class will create an object of a given type and populate it with sample data.

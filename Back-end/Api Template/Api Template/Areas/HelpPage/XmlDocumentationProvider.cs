@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using Api_Template.Areas.HelpPage.ModelDescriptions;
+using Api_control_comercio.Areas.HelpPage.ModelDescriptions;
 
-namespace Api_Template.Areas.HelpPage
+namespace Api_control_comercio.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

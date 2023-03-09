@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Api_Template.Models.Template;
-using Api_Template.Entities;
-using Api_Template.Contracts;
+using Api_control_comercio.Models.Template;
+using Api_control_comercio.Entities;
+using Api_control_comercio.Contracts;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel;
 
-namespace Api_Template.Utils
+namespace Api_control_comercio.Utils
 {
     /// <summary>
     /// Brinda funciones de encriptación y hashing.

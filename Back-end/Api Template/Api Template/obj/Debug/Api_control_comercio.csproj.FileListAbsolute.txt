@@ -1,0 +1,2 @@
+R:\Agus\Proyecto-Sistema-de-gestion-de-comercio\Back-end\Api Template\Api Template\obj\Debug\Api_control_comercio.csproj.AssemblyReference.cache
+R:\Agus\Proyecto-Sistema-de-gestion-de-comercio\Back-end\Api Template\Api Template\obj\Debug\Api_control_comercio.csproj.CoreCompileInputs.cache

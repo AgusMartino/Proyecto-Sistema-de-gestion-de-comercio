@@ -1,6 +1,6 @@
 using System;
 
-namespace Api_Template.Areas.HelpPage
+namespace Api_control_comercio.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

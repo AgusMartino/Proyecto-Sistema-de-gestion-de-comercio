@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Api_Template
+namespace Api_control_comercio
 {
     public class BundleConfig
     {

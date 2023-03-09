@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Api_Template.Utils;
+using Api_control_comercio.Utils;
 
-namespace Api_Template.Models.Template
+namespace Api_control_comercio.Models.Template
 {
     public partial class Usuario
     {

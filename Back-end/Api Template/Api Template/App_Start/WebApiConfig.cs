@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace Api_Template
+namespace Api_control_comercio
 {
     public static class WebApiConfig
     {

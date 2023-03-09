@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Api_Template.Contracts;
-using Api_Template.Entities;
-using Api_Template.Entities.Exceptions;
-using Api_Template.Models.Template;
+using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities;
+using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.Template;
 
-namespace Api_Template.Utils
+namespace Api_control_comercio.Utils
 {
     public class UserManager : IGenericCRUD<Usuario>
     {

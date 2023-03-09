@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api Template", "Api Template\Api Template.csproj", "{CA02A629-D8D7-436B-A806-DB64EDC58292}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_control_comercio", "Api Template\Api_control_comercio.csproj", "{CA02A629-D8D7-436B-A806-DB64EDC58292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

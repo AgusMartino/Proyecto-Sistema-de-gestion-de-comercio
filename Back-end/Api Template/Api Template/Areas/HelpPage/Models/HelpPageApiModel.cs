@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using Api_Template.Areas.HelpPage.ModelDescriptions;
+using Api_control_comercio.Areas.HelpPage.ModelDescriptions;
 
-namespace Api_Template.Areas.HelpPage.Models
+namespace Api_control_comercio.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

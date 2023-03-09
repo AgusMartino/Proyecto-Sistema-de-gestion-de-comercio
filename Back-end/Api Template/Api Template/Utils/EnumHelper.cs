@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace Api_Template.Utils
+namespace Api_control_comercio.Utils
 {
     public static class EnumHelper
     {

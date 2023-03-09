@@ -1,12 +1,12 @@
 using Swashbuckle.Application;
 using System.IO;
 using System.Web.Http;
-using Api_Template;
+using Api_control_comercio;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace Api_Template
+namespace Api_control_comercio
 {
     public class SwaggerConfig
     {

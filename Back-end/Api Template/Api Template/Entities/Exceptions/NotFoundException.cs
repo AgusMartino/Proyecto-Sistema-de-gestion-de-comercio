@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Api_Template.Entities.Exceptions
+namespace Api_control_comercio.Entities.Exceptions
 {
     public class NotFoundException : Exception
     {

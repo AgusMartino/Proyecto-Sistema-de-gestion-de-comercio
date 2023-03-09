@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Http.Results;
-using Api_Template.Utils;
+using Api_control_comercio.Utils;
 
-namespace Api_Template.Controllers
+namespace Api_control_comercio.Controllers
 {
     public class TesteoController : ApiController
     {

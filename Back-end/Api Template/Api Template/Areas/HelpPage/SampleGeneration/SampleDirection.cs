@@ -1,4 +1,4 @@
-namespace Api_Template.Areas.HelpPage
+namespace Api_control_comercio.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

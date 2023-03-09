@@ -11,7 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using System.Xml.Serialization;
 
-namespace Api_Template.Areas.HelpPage.ModelDescriptions
+namespace Api_control_comercio.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Api_Template
+namespace Api_control_comercio
 {
     public class FilterConfig
     {

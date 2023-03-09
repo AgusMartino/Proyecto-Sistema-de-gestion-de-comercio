@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Api_Template.Controllers
+namespace Api_control_comercio.Controllers
 {
     public class HomeController : Controller
     {
