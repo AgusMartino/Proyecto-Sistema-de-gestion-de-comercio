@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c677943f0ebb4bd0937696b21ef47e36" Name="Diagram1">
+        <EntityTypeShape EntityType="sistema_control_comercioModel.category" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.company" Width="1.5" PointX="0.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.employee" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.inventary" Width="1.5" PointX="7.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.payment_method" Width="1.5" PointX="5.25" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.payment_service" Width="1.5" PointX="10.5" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.payment_suppliers" Width="1.5" PointX="7.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.payment_suppliers_order" Width="1.5" PointX="9.75" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.permission" Width="1.5" PointX="7.5" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.physical_location" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.product" Width="1.5" PointX="7.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.product_rawmaterial" Width="1.5" PointX="9.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.profile" Width="1.5" PointX="10.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.profile_permission" Width="1.5" PointX="12.75" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.profile_profile" Width="1.5" PointX="12.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.raw_material" Width="1.5" PointX="5.25" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.sale" Width="1.5" PointX="7.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.sale_order" Width="1.5" PointX="9.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.service" Width="1.5" PointX="5.25" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.supplier" Width="1.5" PointX="5.25" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.sysdiagrams" Width="3.625" PointX="1.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.unit_of_measurement" Width="1.5" PointX="3" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.user" Width="1.5" PointX="7.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.user_permission" Width="1.5" PointX="9.75" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistema_control_comercioModel.user_profile" Width="1.5" PointX="12.75" PointY="24.5" IsExpanded="true" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_category_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_product_category" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_physical_location_company" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_raw_material_company" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_unit_of_measurement_company" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_employee_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_sale_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_user_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_inventary_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_inventary_raw_material" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_sale_payment_method" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_service_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_service_service" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_suppliers_order_payment_suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_suppliers_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_suppliers_supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_payment_suppliers_order_raw_material" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_profile_permission_permission" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_user_permission_permission" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_physical_location_sale" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_service_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_supplier_physical_location" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_product_rawmaterial_product" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_sale_order_product" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_product_rawmaterial_raw_material" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_profile_permission_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_profile_profile_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_profile_profile_profile1" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_user_profile_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_raw_material_unit_of_measurement" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_sale_order_sale" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_user_permission_user" ManuallyRouted="false" />
+        <AssociationConnector Association="sistema_control_comercioModel.FK_user_profile_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
