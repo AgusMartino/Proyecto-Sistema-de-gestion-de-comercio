@@ -21,10 +21,10 @@ namespace Api_control_comercio.Models.BD
             this.user_profile = new HashSet<user_profile>();
         }
     
-        public int user_id { get; set; }
+        public System.Guid user_id { get; set; }
         public string user_name { get; set; }
         public string user_password { get; set; }
-        public Nullable<int> employee_id { get; set; }
+        public Nullable<System.Guid> employee_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     

@@ -14,9 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class product_rawmaterial
     {
-        public int product_rawmaterial_id { get; set; }
-        public Nullable<int> product_id { get; set; }
-        public Nullable<int> raw_material_id { get; set; }
+        public System.Guid product_rawmaterial_id { get; set; }
+        public Nullable<System.Guid> product_id { get; set; }
+        public Nullable<System.Guid> raw_material_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     

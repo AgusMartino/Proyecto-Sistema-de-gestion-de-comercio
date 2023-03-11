@@ -14,10 +14,10 @@ namespace Api_control_comercio.Models.BD
     
     public partial class inventary
     {
-        public int inventary_id { get; set; }
-        public Nullable<int> raw_material_id { get; set; }
+        public System.Guid inventary_id { get; set; }
+        public Nullable<System.Guid> raw_material_id { get; set; }
         public Nullable<int> quantity { get; set; }
-        public Nullable<int> physical_location_id { get; set; }
+        public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     

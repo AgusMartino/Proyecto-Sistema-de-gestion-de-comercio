@@ -20,14 +20,13 @@ namespace Api_control_comercio.Models.BD
             this.product = new HashSet<product>();
         }
     
-        public int category_id { get; set; }
+        public System.Guid category_id { get; set; }
         public string category_code { get; set; }
-        public Nullable<int> physical_location_id { get; set; }
+        public Nullable<System.Guid> physical_location_id { get; set; }
         public string category_name { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     
-        public virtual physical_location physical_location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> product { get; set; }
     }

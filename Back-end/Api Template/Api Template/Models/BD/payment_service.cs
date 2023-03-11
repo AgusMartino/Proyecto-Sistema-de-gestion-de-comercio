@@ -14,9 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class payment_service
     {
-        public int payment_service_id { get; set; }
-        public Nullable<int> service_id { get; set; }
-        public Nullable<int> physical_location_id { get; set; }
+        public System.Guid payment_service_id { get; set; }
+        public Nullable<System.Guid> service_id { get; set; }
+        public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<int> payment_service_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }

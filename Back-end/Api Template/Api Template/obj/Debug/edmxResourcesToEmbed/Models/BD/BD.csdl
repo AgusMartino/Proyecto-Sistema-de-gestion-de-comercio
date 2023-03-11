@@ -1,0 +1,946 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistema_control_comercioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_category_physical_location" FromRole="category" ToRole="physical_location" />
+    <NavigationProperty Name="product" Relationship="Self.FK_product_category" FromRole="category" ToRole="product" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="company_cuit" Type="Int32" />
+    <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_cellphone" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_physical_location_company" FromRole="company" ToRole="physical_location" />
+    <NavigationProperty Name="raw_material" Relationship="Self.FK_raw_material_company" FromRole="company" ToRole="raw_material" />
+    <NavigationProperty Name="unit_of_measurement" Relationship="Self.FK_unit_of_measurement_company" FromRole="company" ToRole="unit_of_measurement" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employee_dni" Type="Int32" />
+    <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employee_lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employee_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employee_cellphone" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_employee_physical_location" FromRole="employee" ToRole="physical_location" />
+    <NavigationProperty Name="sale" Relationship="Self.FK_sale_employee" FromRole="employee" ToRole="sale" />
+    <NavigationProperty Name="user" Relationship="Self.FK_user_employee" FromRole="employee" ToRole="user" />
+  </EntityType>
+  <EntityType Name="inventary">
+    <Key>
+      <PropertyRef Name="inventary_id" />
+    </Key>
+    <Property Name="inventary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="raw_material_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_inventary_physical_location" FromRole="inventary" ToRole="physical_location" />
+    <NavigationProperty Name="raw_material" Relationship="Self.FK_inventary_raw_material" FromRole="inventary" ToRole="raw_material" />
+  </EntityType>
+  <EntityType Name="payment_method">
+    <Key>
+      <PropertyRef Name="payment_method_id" />
+    </Key>
+    <Property Name="payment_method_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="payment_method_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="sale" Relationship="Self.FK_sale_payment_method" FromRole="payment_method" ToRole="sale" />
+  </EntityType>
+  <EntityType Name="payment_service">
+    <Key>
+      <PropertyRef Name="payment_service_id" />
+    </Key>
+    <Property Name="payment_service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_id" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="payment_service_price" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_payment_service_physical_location" FromRole="payment_service" ToRole="physical_location" />
+    <NavigationProperty Name="service" Relationship="Self.FK_payment_service_service" FromRole="payment_service" ToRole="service" />
+  </EntityType>
+  <EntityType Name="payment_suppliers">
+    <Key>
+      <PropertyRef Name="payment_suppliers_id" />
+    </Key>
+    <Property Name="payment_suppliers_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="supplier_id" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="payment_suppliers_cost" Type="Int32" />
+    <Property Name="payment_suppliers_pay" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="payment_suppliers_order" Relationship="Self.FK_payment_suppliers_order_payment_suppliers" FromRole="payment_suppliers" ToRole="payment_suppliers_order" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_payment_suppliers_physical_location" FromRole="payment_suppliers" ToRole="physical_location" />
+    <NavigationProperty Name="supplier" Relationship="Self.FK_payment_suppliers_supplier" FromRole="payment_suppliers" ToRole="supplier" />
+  </EntityType>
+  <EntityType Name="payment_suppliers_order">
+    <Key>
+      <PropertyRef Name="payment_suppliers_order_id" />
+    </Key>
+    <Property Name="payment_suppliers_order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="payment_suppliers_id" Type="Int32" />
+    <Property Name="raw_material_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="payment_suppliers_cost" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="payment_suppliers" Relationship="Self.FK_payment_suppliers_order_payment_suppliers" FromRole="payment_suppliers_order" ToRole="payment_suppliers" />
+    <NavigationProperty Name="raw_material" Relationship="Self.FK_payment_suppliers_order_raw_material" FromRole="payment_suppliers_order" ToRole="raw_material" />
+  </EntityType>
+  <EntityType Name="permission">
+    <Key>
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="permission_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permission_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="profile_permission" Relationship="Self.FK_profile_permission_permission" FromRole="permission" ToRole="profile_permission" />
+    <NavigationProperty Name="user_permission" Relationship="Self.FK_user_permission_permission" FromRole="permission" ToRole="user_permission" />
+  </EntityType>
+  <EntityType Name="physical_location">
+    <Key>
+      <PropertyRef Name="physical_location_id" />
+    </Key>
+    <Property Name="physical_location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="physical_location_cuit" Type="Int32" />
+    <Property Name="physical_location_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="physical_location_cellphone" Type="Int32" />
+    <Property Name="physical_location_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="category" Relationship="Self.FK_category_physical_location" FromRole="physical_location" ToRole="category" />
+    <NavigationProperty Name="company" Relationship="Self.FK_physical_location_company" FromRole="physical_location" ToRole="company" />
+    <NavigationProperty Name="employee" Relationship="Self.FK_employee_physical_location" FromRole="physical_location" ToRole="employee" />
+    <NavigationProperty Name="inventary" Relationship="Self.FK_inventary_physical_location" FromRole="physical_location" ToRole="inventary" />
+    <NavigationProperty Name="payment_service" Relationship="Self.FK_payment_service_physical_location" FromRole="physical_location" ToRole="payment_service" />
+    <NavigationProperty Name="payment_suppliers" Relationship="Self.FK_payment_suppliers_physical_location" FromRole="physical_location" ToRole="payment_suppliers" />
+    <NavigationProperty Name="sale" Relationship="Self.FK_physical_location_sale" FromRole="physical_location" ToRole="sale" />
+    <NavigationProperty Name="service" Relationship="Self.FK_service_physical_location" FromRole="physical_location" ToRole="service" />
+    <NavigationProperty Name="supplier" Relationship="Self.FK_supplier_physical_location" FromRole="physical_location" ToRole="supplier" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_cost" Type="Int32" />
+    <Property Name="product_price" Type="Int32" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="category" Relationship="Self.FK_product_category" FromRole="product" ToRole="category" />
+    <NavigationProperty Name="product_rawmaterial" Relationship="Self.FK_product_rawmaterial_product" FromRole="product" ToRole="product_rawmaterial" />
+    <NavigationProperty Name="sale_order" Relationship="Self.FK_sale_order_product" FromRole="product" ToRole="sale_order" />
+  </EntityType>
+  <EntityType Name="product_rawmaterial">
+    <Key>
+      <PropertyRef Name="product_rawmaterial_id" />
+    </Key>
+    <Property Name="product_rawmaterial_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="raw_material_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="product" Relationship="Self.FK_product_rawmaterial_product" FromRole="product_rawmaterial" ToRole="product" />
+    <NavigationProperty Name="raw_material" Relationship="Self.FK_product_rawmaterial_raw_material" FromRole="product_rawmaterial" ToRole="raw_material" />
+  </EntityType>
+  <EntityType Name="profile">
+    <Key>
+      <PropertyRef Name="profile_id" />
+    </Key>
+    <Property Name="profile_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="profile_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="profile_permission" Relationship="Self.FK_profile_permission_profile" FromRole="profile" ToRole="profile_permission" />
+    <NavigationProperty Name="profile_profile" Relationship="Self.FK_profile_profile_profile" FromRole="profile" ToRole="profile_profile" />
+    <NavigationProperty Name="profile_profile1" Relationship="Self.FK_profile_profile_profile1" FromRole="profile" ToRole="profile_profile" />
+    <NavigationProperty Name="user_profile" Relationship="Self.FK_user_profile_profile" FromRole="profile" ToRole="user_profile" />
+  </EntityType>
+  <EntityType Name="profile_permission">
+    <Key>
+      <PropertyRef Name="profile_permission_id" />
+    </Key>
+    <Property Name="profile_permission_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="profile_id" Type="Int32" />
+    <Property Name="permission_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="permission" Relationship="Self.FK_profile_permission_permission" FromRole="profile_permission" ToRole="permission" />
+    <NavigationProperty Name="profile" Relationship="Self.FK_profile_permission_profile" FromRole="profile_permission" ToRole="profile" />
+  </EntityType>
+  <EntityType Name="profile_profile">
+    <Key>
+      <PropertyRef Name="profile_profile_id" />
+    </Key>
+    <Property Name="profile_profile_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="profile_father_id" Type="Int32" />
+    <Property Name="profile_child_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="profile" Relationship="Self.FK_profile_profile_profile" FromRole="profile_profile" ToRole="profile" />
+    <NavigationProperty Name="profile1" Relationship="Self.FK_profile_profile_profile1" FromRole="profile_profile" ToRole="profile" />
+  </EntityType>
+  <EntityType Name="raw_material">
+    <Key>
+      <PropertyRef Name="raw_material_id" />
+    </Key>
+    <Property Name="raw_material_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="raw_material_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="raw_material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="raw_material_cost" Type="Int32" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="unit_of_measurement_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="company" Relationship="Self.FK_raw_material_company" FromRole="raw_material" ToRole="company" />
+    <NavigationProperty Name="inventary" Relationship="Self.FK_inventary_raw_material" FromRole="raw_material" ToRole="inventary" />
+    <NavigationProperty Name="payment_suppliers_order" Relationship="Self.FK_payment_suppliers_order_raw_material" FromRole="raw_material" ToRole="payment_suppliers_order" />
+    <NavigationProperty Name="product_rawmaterial" Relationship="Self.FK_product_rawmaterial_raw_material" FromRole="raw_material" ToRole="product_rawmaterial" />
+    <NavigationProperty Name="unit_of_measurement" Relationship="Self.FK_raw_material_unit_of_measurement" FromRole="raw_material" ToRole="unit_of_measurement" />
+  </EntityType>
+  <EntityType Name="sale">
+    <Key>
+      <PropertyRef Name="sale_id" />
+    </Key>
+    <Property Name="sale_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="employee_id" Type="Int32" />
+    <Property Name="sale_price" Type="Int32" />
+    <Property Name="payment_method_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employee" Relationship="Self.FK_sale_employee" FromRole="sale" ToRole="employee" />
+    <NavigationProperty Name="payment_method" Relationship="Self.FK_sale_payment_method" FromRole="sale" ToRole="payment_method" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_physical_location_sale" FromRole="sale" ToRole="physical_location" />
+    <NavigationProperty Name="sale_order" Relationship="Self.FK_sale_order_sale" FromRole="sale" ToRole="sale_order" />
+  </EntityType>
+  <EntityType Name="sale_order">
+    <Key>
+      <PropertyRef Name="sale_order_id" />
+    </Key>
+    <Property Name="sale_order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sale_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="sale_order_price" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="product" Relationship="Self.FK_sale_order_product" FromRole="sale_order" ToRole="product" />
+    <NavigationProperty Name="sale" Relationship="Self.FK_sale_order_sale" FromRole="sale_order" ToRole="sale" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="service_id" />
+    </Key>
+    <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="service_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="payment_service" Relationship="Self.FK_payment_service_service" FromRole="service" ToRole="payment_service" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_service_physical_location" FromRole="service" ToRole="physical_location" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="supplier_id" />
+    </Key>
+    <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="supplier_cuit" Type="Int32" />
+    <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="supplier_cellphone" Type="Int32" />
+    <Property Name="supplier_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="supplier_debt" Type="Int32" />
+    <Property Name="physical_location_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modificatrion_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="payment_suppliers" Relationship="Self.FK_payment_suppliers_supplier" FromRole="supplier" ToRole="payment_suppliers" />
+    <NavigationProperty Name="physical_location" Relationship="Self.FK_supplier_physical_location" FromRole="supplier" ToRole="physical_location" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="unit_of_measurement">
+    <Key>
+      <PropertyRef Name="unit_of_measurement_id" />
+    </Key>
+    <Property Name="unit_of_measurement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="unit_of_measurement_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="company" Relationship="Self.FK_unit_of_measurement_company" FromRole="unit_of_measurement" ToRole="company" />
+    <NavigationProperty Name="raw_material" Relationship="Self.FK_raw_material_unit_of_measurement" FromRole="unit_of_measurement" ToRole="raw_material" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employee_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employee" Relationship="Self.FK_user_employee" FromRole="user" ToRole="employee" />
+    <NavigationProperty Name="user_permission" Relationship="Self.FK_user_permission_user" FromRole="user" ToRole="user_permission" />
+    <NavigationProperty Name="user_profile" Relationship="Self.FK_user_profile_user" FromRole="user" ToRole="user_profile" />
+  </EntityType>
+  <EntityType Name="user_permission">
+    <Key>
+      <PropertyRef Name="user_permission_id" />
+    </Key>
+    <Property Name="user_permission_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="permission_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="permission" Relationship="Self.FK_user_permission_permission" FromRole="user_permission" ToRole="permission" />
+    <NavigationProperty Name="user" Relationship="Self.FK_user_permission_user" FromRole="user_permission" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user_profile">
+    <Key>
+      <PropertyRef Name="user_profile_id" />
+    </Key>
+    <Property Name="user_profile_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="profile_id" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="profile" Relationship="Self.FK_user_profile_profile" FromRole="user_profile" ToRole="profile" />
+    <NavigationProperty Name="user" Relationship="Self.FK_user_profile_user" FromRole="user_profile" ToRole="user" />
+  </EntityType>
+  <Association Name="FK_category_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="category" Type="Self.category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="category">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_category">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_physical_location_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="physical_location">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_raw_material_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="raw_material">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_unit_of_measurement_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="unit_of_measurement" Type="Self.unit_of_measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="unit_of_measurement">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="employee" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventary_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="inventary" Type="Self.inventary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="inventary">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventary_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="inventary" Type="Self.inventary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="inventary">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_payment_method">
+    <End Role="payment_method" Type="Self.payment_method" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_method">
+        <PropertyRef Name="payment_method_id" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="payment_method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_service_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="payment_service" Type="Self.payment_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="payment_service">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_service_service">
+    <End Role="service" Type="Self.service" Multiplicity="0..1" />
+    <End Role="payment_service" Type="Self.payment_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="payment_service">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_order_payment_suppliers">
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="0..1" />
+    <End Role="payment_suppliers_order" Type="Self.payment_suppliers_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_suppliers">
+        <PropertyRef Name="payment_suppliers_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers_order">
+        <PropertyRef Name="payment_suppliers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_supplier">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_order_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="payment_suppliers_order" Type="Self.payment_suppliers_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers_order">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_permission_permission">
+    <End Role="permission" Type="Self.permission" Multiplicity="0..1" />
+    <End Role="profile_permission" Type="Self.profile_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="profile_permission">
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_permission_permission">
+    <End Role="permission" Type="Self.permission" Multiplicity="0..1" />
+    <End Role="user_permission" Type="Self.user_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="user_permission">
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_physical_location_sale">
+    <End Role="sale" Type="Self.sale" Multiplicity="0..1" />
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale">
+        <PropertyRef Name="sale_id" />
+      </Principal>
+      <Dependent Role="physical_location">
+        <PropertyRef Name="physical_location_cuit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_service_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="service" Type="Self.service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="service">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_supplier_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="supplier" Type="Self.supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="supplier">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_rawmaterial_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="product_rawmaterial" Type="Self.product_rawmaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="product_rawmaterial">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_order_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="sale_order">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_rawmaterial_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="product_rawmaterial" Type="Self.product_rawmaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="product_rawmaterial">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_permission_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_permission" Type="Self.profile_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_permission">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_profile_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_profile" Type="Self.profile_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_profile">
+        <PropertyRef Name="profile_father_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_profile_profile1">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_profile" Type="Self.profile_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_profile">
+        <PropertyRef Name="profile_child_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_profile_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="user_profile">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_raw_material_unit_of_measurement">
+    <End Role="unit_of_measurement" Type="Self.unit_of_measurement" Multiplicity="0..1" />
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit_of_measurement">
+        <PropertyRef Name="unit_of_measurement_id" />
+      </Principal>
+      <Dependent Role="raw_material">
+        <PropertyRef Name="unit_of_measurement_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_order_sale">
+    <End Role="sale" Type="Self.sale" Multiplicity="0..1" />
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale">
+        <PropertyRef Name="sale_id" />
+      </Principal>
+      <Dependent Role="sale_order">
+        <PropertyRef Name="sale_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_permission_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="user_permission" Type="Self.user_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="user_permission">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_profile_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sistema_control_comercioEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="company" EntityType="Self.company" />
+    <EntitySet Name="employee" EntityType="Self.employee" />
+    <EntitySet Name="inventary" EntityType="Self.inventary" />
+    <EntitySet Name="payment_method" EntityType="Self.payment_method" />
+    <EntitySet Name="payment_service" EntityType="Self.payment_service" />
+    <EntitySet Name="payment_suppliers" EntityType="Self.payment_suppliers" />
+    <EntitySet Name="payment_suppliers_order" EntityType="Self.payment_suppliers_order" />
+    <EntitySet Name="permission" EntityType="Self.permission" />
+    <EntitySet Name="physical_location" EntityType="Self.physical_location" />
+    <EntitySet Name="product" EntityType="Self.product" />
+    <EntitySet Name="product_rawmaterial" EntityType="Self.product_rawmaterial" />
+    <EntitySet Name="profile" EntityType="Self.profile" />
+    <EntitySet Name="profile_permission" EntityType="Self.profile_permission" />
+    <EntitySet Name="profile_profile" EntityType="Self.profile_profile" />
+    <EntitySet Name="raw_material" EntityType="Self.raw_material" />
+    <EntitySet Name="sale" EntityType="Self.sale" />
+    <EntitySet Name="sale_order" EntityType="Self.sale_order" />
+    <EntitySet Name="service" EntityType="Self.service" />
+    <EntitySet Name="supplier" EntityType="Self.supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="unit_of_measurement" EntityType="Self.unit_of_measurement" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <EntitySet Name="user_permission" EntityType="Self.user_permission" />
+    <EntitySet Name="user_profile" EntityType="Self.user_profile" />
+    <AssociationSet Name="FK_category_physical_location" Association="Self.FK_category_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="category" EntitySet="category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_category" Association="Self.FK_product_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_physical_location_company" Association="Self.FK_physical_location_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="physical_location" EntitySet="physical_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_raw_material_company" Association="Self.FK_raw_material_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="raw_material" EntitySet="raw_material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_unit_of_measurement_company" Association="Self.FK_unit_of_measurement_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="unit_of_measurement" EntitySet="unit_of_measurement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_physical_location" Association="Self.FK_employee_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_employee" Association="Self.FK_sale_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_employee" Association="Self.FK_user_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventary_physical_location" Association="Self.FK_inventary_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="inventary" EntitySet="inventary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventary_raw_material" Association="Self.FK_inventary_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="inventary" EntitySet="inventary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_payment_method" Association="Self.FK_sale_payment_method">
+      <End Role="payment_method" EntitySet="payment_method" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_service_physical_location" Association="Self.FK_payment_service_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="payment_service" EntitySet="payment_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_service_service" Association="Self.FK_payment_service_service">
+      <End Role="service" EntitySet="service" />
+      <End Role="payment_service" EntitySet="payment_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_order_payment_suppliers" Association="Self.FK_payment_suppliers_order_payment_suppliers">
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+      <End Role="payment_suppliers_order" EntitySet="payment_suppliers_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_physical_location" Association="Self.FK_payment_suppliers_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_supplier" Association="Self.FK_payment_suppliers_supplier">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_order_raw_material" Association="Self.FK_payment_suppliers_order_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="payment_suppliers_order" EntitySet="payment_suppliers_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_permission_permission" Association="Self.FK_profile_permission_permission">
+      <End Role="permission" EntitySet="permission" />
+      <End Role="profile_permission" EntitySet="profile_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_permission_permission" Association="Self.FK_user_permission_permission">
+      <End Role="permission" EntitySet="permission" />
+      <End Role="user_permission" EntitySet="user_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_physical_location_sale" Association="Self.FK_physical_location_sale">
+      <End Role="sale" EntitySet="sale" />
+      <End Role="physical_location" EntitySet="physical_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_service_physical_location" Association="Self.FK_service_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="service" EntitySet="service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_supplier_physical_location" Association="Self.FK_supplier_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="supplier" EntitySet="supplier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_rawmaterial_product" Association="Self.FK_product_rawmaterial_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="product_rawmaterial" EntitySet="product_rawmaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_order_product" Association="Self.FK_sale_order_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="sale_order" EntitySet="sale_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_rawmaterial_raw_material" Association="Self.FK_product_rawmaterial_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="product_rawmaterial" EntitySet="product_rawmaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_permission_profile" Association="Self.FK_profile_permission_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_permission" EntitySet="profile_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_profile_profile" Association="Self.FK_profile_profile_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_profile" EntitySet="profile_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_profile_profile1" Association="Self.FK_profile_profile_profile1">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_profile" EntitySet="profile_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_profile_profile" Association="Self.FK_user_profile_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="user_profile" EntitySet="user_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_raw_material_unit_of_measurement" Association="Self.FK_raw_material_unit_of_measurement">
+      <End Role="unit_of_measurement" EntitySet="unit_of_measurement" />
+      <End Role="raw_material" EntitySet="raw_material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_order_sale" Association="Self.FK_sale_order_sale">
+      <End Role="sale" EntitySet="sale" />
+      <End Role="sale_order" EntitySet="sale_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_permission_user" Association="Self.FK_user_permission_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_permission" EntitySet="user_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_profile_user" Association="Self.FK_user_profile_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_profile" EntitySet="user_profile" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(sistema_control_comercioModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(sistema_control_comercioModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistema_control_comercioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_code" Type="varchar" MaxLength="50" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="category_name" Type="varchar" MaxLength="50" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company_cuit" Type="int" />
+    <Property Name="company_name" Type="varchar" MaxLength="50" />
+    <Property Name="company_address" Type="varchar" MaxLength="50" />
+    <Property Name="company_cellphone" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employee_dni" Type="int" />
+    <Property Name="employee_name" Type="varchar" MaxLength="50" />
+    <Property Name="employee_lastname" Type="varchar" MaxLength="50" />
+    <Property Name="employee_address" Type="varchar" MaxLength="50" />
+    <Property Name="employee_cellphone" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="inventary">
+    <Key>
+      <PropertyRef Name="inventary_id" />
+    </Key>
+    <Property Name="inventary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="raw_material_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="payment_method">
+    <Key>
+      <PropertyRef Name="payment_method_id" />
+    </Key>
+    <Property Name="payment_method_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="payment_method_name" Type="varchar" MaxLength="50" />
+    <Property Name="company_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="payment_service">
+    <Key>
+      <PropertyRef Name="payment_service_id" />
+    </Key>
+    <Property Name="payment_service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_id" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="payment_service_price" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="payment_suppliers">
+    <Key>
+      <PropertyRef Name="payment_suppliers_id" />
+    </Key>
+    <Property Name="payment_suppliers_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supplier_id" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="payment_suppliers_cost" Type="int" />
+    <Property Name="payment_suppliers_pay" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="payment_suppliers_order">
+    <Key>
+      <PropertyRef Name="payment_suppliers_order_id" />
+    </Key>
+    <Property Name="payment_suppliers_order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="payment_suppliers_id" Type="int" />
+    <Property Name="raw_material_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="payment_suppliers_cost" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="permission">
+    <Key>
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="permission_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permission_name" Type="varchar" MaxLength="50" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="physical_location">
+    <Key>
+      <PropertyRef Name="physical_location_id" />
+    </Key>
+    <Property Name="physical_location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="physical_location_cuit" Type="int" />
+    <Property Name="physical_location_name" Type="varchar" MaxLength="50" />
+    <Property Name="physical_location_cellphone" Type="int" />
+    <Property Name="physical_location_address" Type="varchar" MaxLength="50" />
+    <Property Name="company_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_code" Type="varchar" MaxLength="50" />
+    <Property Name="product_name" Type="varchar" MaxLength="50" />
+    <Property Name="product_cost" Type="int" />
+    <Property Name="product_price" Type="int" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="product_rawmaterial">
+    <Key>
+      <PropertyRef Name="product_rawmaterial_id" />
+    </Key>
+    <Property Name="product_rawmaterial_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="raw_material_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="profile">
+    <Key>
+      <PropertyRef Name="profile_id" />
+    </Key>
+    <Property Name="profile_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="profile_name" Type="varchar" MaxLength="50" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="profile_permission">
+    <Key>
+      <PropertyRef Name="profile_permission_id" />
+    </Key>
+    <Property Name="profile_permission_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="profile_id" Type="int" />
+    <Property Name="permission_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="profile_profile">
+    <Key>
+      <PropertyRef Name="profile_profile_id" />
+    </Key>
+    <Property Name="profile_profile_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="profile_father_id" Type="int" />
+    <Property Name="profile_child_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="raw_material">
+    <Key>
+      <PropertyRef Name="raw_material_id" />
+    </Key>
+    <Property Name="raw_material_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="raw_material_code" Type="varchar" MaxLength="50" />
+    <Property Name="raw_material_name" Type="varchar" MaxLength="50" />
+    <Property Name="raw_material_cost" Type="int" />
+    <Property Name="company_id" Type="int" />
+    <Property Name="unit_of_measurement_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sale">
+    <Key>
+      <PropertyRef Name="sale_id" />
+    </Key>
+    <Property Name="sale_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="employee_id" Type="int" />
+    <Property Name="sale_price" Type="int" />
+    <Property Name="payment_method_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sale_order">
+    <Key>
+      <PropertyRef Name="sale_order_id" />
+    </Key>
+    <Property Name="sale_order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sale_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="sale_order_price" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="service_id" />
+    </Key>
+    <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_code" Type="varchar" MaxLength="50" />
+    <Property Name="service_name" Type="varchar" MaxLength="50" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="supplier_id" />
+    </Key>
+    <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supplier_cuit" Type="int" />
+    <Property Name="supplier_name" Type="varchar" MaxLength="50" />
+    <Property Name="supplier_cellphone" Type="int" />
+    <Property Name="supplier_address" Type="varchar" MaxLength="50" />
+    <Property Name="supplier_debt" Type="int" />
+    <Property Name="physical_location_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modificatrion_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="unit_of_measurement">
+    <Key>
+      <PropertyRef Name="unit_of_measurement_id" />
+    </Key>
+    <Property Name="unit_of_measurement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unit_of_measurement_name" Type="varchar" MaxLength="50" />
+    <Property Name="company_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_password" Type="varchar" MaxLength="50" />
+    <Property Name="employee_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="user_permission">
+    <Key>
+      <PropertyRef Name="user_permission_id" />
+    </Key>
+    <Property Name="user_permission_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="permission_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="user_profile">
+    <Key>
+      <PropertyRef Name="user_profile_id" />
+    </Key>
+    <Property Name="user_profile_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="profile_id" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="modification_date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_category_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="category" Type="Self.category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="category">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="employee" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventary_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="inventary" Type="Self.inventary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="inventary">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventary_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="inventary" Type="Self.inventary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="inventary">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_service_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="payment_service" Type="Self.payment_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="payment_service">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_service_service">
+    <End Role="service" Type="Self.service" Multiplicity="0..1" />
+    <End Role="payment_service" Type="Self.payment_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="payment_service">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_order_payment_suppliers">
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="0..1" />
+    <End Role="payment_suppliers_order" Type="Self.payment_suppliers_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_suppliers">
+        <PropertyRef Name="payment_suppliers_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers_order">
+        <PropertyRef Name="payment_suppliers_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_order_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="payment_suppliers_order" Type="Self.payment_suppliers_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers_order">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_suppliers_supplier">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="payment_suppliers" Type="Self.payment_suppliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="payment_suppliers">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_physical_location_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="physical_location">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_physical_location_sale">
+    <End Role="sale" Type="Self.sale" Multiplicity="0..1" />
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale">
+        <PropertyRef Name="sale_id" />
+      </Principal>
+      <Dependent Role="physical_location">
+        <PropertyRef Name="physical_location_cuit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_category">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_rawmaterial_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="product_rawmaterial" Type="Self.product_rawmaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="product_rawmaterial">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_rawmaterial_raw_material">
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="0..1" />
+    <End Role="product_rawmaterial" Type="Self.product_rawmaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw_material">
+        <PropertyRef Name="raw_material_id" />
+      </Principal>
+      <Dependent Role="product_rawmaterial">
+        <PropertyRef Name="raw_material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_permission_permission">
+    <End Role="permission" Type="Self.permission" Multiplicity="0..1" />
+    <End Role="profile_permission" Type="Self.profile_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="profile_permission">
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_permission_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_permission" Type="Self.profile_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_permission">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_profile_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_profile" Type="Self.profile_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_profile">
+        <PropertyRef Name="profile_father_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_profile_profile_profile1">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="profile_profile" Type="Self.profile_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="profile_profile">
+        <PropertyRef Name="profile_child_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_raw_material_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="raw_material">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_raw_material_unit_of_measurement">
+    <End Role="unit_of_measurement" Type="Self.unit_of_measurement" Multiplicity="0..1" />
+    <End Role="raw_material" Type="Self.raw_material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit_of_measurement">
+        <PropertyRef Name="unit_of_measurement_id" />
+      </Principal>
+      <Dependent Role="raw_material">
+        <PropertyRef Name="unit_of_measurement_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_order_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="sale_order">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_order_sale">
+    <End Role="sale" Type="Self.sale" Multiplicity="0..1" />
+    <End Role="sale_order" Type="Self.sale_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sale">
+        <PropertyRef Name="sale_id" />
+      </Principal>
+      <Dependent Role="sale_order">
+        <PropertyRef Name="sale_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sale_payment_method">
+    <End Role="payment_method" Type="Self.payment_method" Multiplicity="0..1" />
+    <End Role="sale" Type="Self.sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_method">
+        <PropertyRef Name="payment_method_id" />
+      </Principal>
+      <Dependent Role="sale">
+        <PropertyRef Name="payment_method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_service_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="service" Type="Self.service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="service">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_supplier_physical_location">
+    <End Role="physical_location" Type="Self.physical_location" Multiplicity="0..1" />
+    <End Role="supplier" Type="Self.supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="physical_location">
+        <PropertyRef Name="physical_location_id" />
+      </Principal>
+      <Dependent Role="supplier">
+        <PropertyRef Name="physical_location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_unit_of_measurement_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="unit_of_measurement" Type="Self.unit_of_measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="unit_of_measurement">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_permission_permission">
+    <End Role="permission" Type="Self.permission" Multiplicity="0..1" />
+    <End Role="user_permission" Type="Self.user_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="user_permission">
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_permission_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="user_permission" Type="Self.user_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="user_permission">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_profile_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="profile_id" />
+      </Principal>
+      <Dependent Role="user_profile">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_profile_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="sistema_control_comercioModelStoreContainer">
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inventary" EntityType="Self.inventary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment_method" EntityType="Self.payment_method" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment_service" EntityType="Self.payment_service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment_suppliers" EntityType="Self.payment_suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment_suppliers_order" EntityType="Self.payment_suppliers_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="physical_location" EntityType="Self.physical_location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product_rawmaterial" EntityType="Self.product_rawmaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profile" EntityType="Self.profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profile_permission" EntityType="Self.profile_permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profile_profile" EntityType="Self.profile_profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="raw_material" EntityType="Self.raw_material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale" EntityType="Self.sale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sale_order" EntityType="Self.sale_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unit_of_measurement" EntityType="Self.unit_of_measurement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_permission" EntityType="Self.user_permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_profile" EntityType="Self.user_profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_category_physical_location" Association="Self.FK_category_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="category" EntitySet="category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_physical_location" Association="Self.FK_employee_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventary_physical_location" Association="Self.FK_inventary_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="inventary" EntitySet="inventary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventary_raw_material" Association="Self.FK_inventary_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="inventary" EntitySet="inventary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_service_physical_location" Association="Self.FK_payment_service_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="payment_service" EntitySet="payment_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_service_service" Association="Self.FK_payment_service_service">
+      <End Role="service" EntitySet="service" />
+      <End Role="payment_service" EntitySet="payment_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_order_payment_suppliers" Association="Self.FK_payment_suppliers_order_payment_suppliers">
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+      <End Role="payment_suppliers_order" EntitySet="payment_suppliers_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_order_raw_material" Association="Self.FK_payment_suppliers_order_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="payment_suppliers_order" EntitySet="payment_suppliers_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_physical_location" Association="Self.FK_payment_suppliers_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_suppliers_supplier" Association="Self.FK_payment_suppliers_supplier">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="payment_suppliers" EntitySet="payment_suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_physical_location_company" Association="Self.FK_physical_location_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="physical_location" EntitySet="physical_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_physical_location_sale" Association="Self.FK_physical_location_sale">
+      <End Role="sale" EntitySet="sale" />
+      <End Role="physical_location" EntitySet="physical_location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_category" Association="Self.FK_product_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_rawmaterial_product" Association="Self.FK_product_rawmaterial_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="product_rawmaterial" EntitySet="product_rawmaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_rawmaterial_raw_material" Association="Self.FK_product_rawmaterial_raw_material">
+      <End Role="raw_material" EntitySet="raw_material" />
+      <End Role="product_rawmaterial" EntitySet="product_rawmaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_permission_permission" Association="Self.FK_profile_permission_permission">
+      <End Role="permission" EntitySet="permission" />
+      <End Role="profile_permission" EntitySet="profile_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_permission_profile" Association="Self.FK_profile_permission_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_permission" EntitySet="profile_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_profile_profile" Association="Self.FK_profile_profile_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_profile" EntitySet="profile_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_profile_profile_profile1" Association="Self.FK_profile_profile_profile1">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="profile_profile" EntitySet="profile_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_raw_material_company" Association="Self.FK_raw_material_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="raw_material" EntitySet="raw_material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_raw_material_unit_of_measurement" Association="Self.FK_raw_material_unit_of_measurement">
+      <End Role="unit_of_measurement" EntitySet="unit_of_measurement" />
+      <End Role="raw_material" EntitySet="raw_material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_employee" Association="Self.FK_sale_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_order_product" Association="Self.FK_sale_order_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="sale_order" EntitySet="sale_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_order_sale" Association="Self.FK_sale_order_sale">
+      <End Role="sale" EntitySet="sale" />
+      <End Role="sale_order" EntitySet="sale_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sale_payment_method" Association="Self.FK_sale_payment_method">
+      <End Role="payment_method" EntitySet="payment_method" />
+      <End Role="sale" EntitySet="sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_service_physical_location" Association="Self.FK_service_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="service" EntitySet="service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_supplier_physical_location" Association="Self.FK_supplier_physical_location">
+      <End Role="physical_location" EntitySet="physical_location" />
+      <End Role="supplier" EntitySet="supplier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_unit_of_measurement_company" Association="Self.FK_unit_of_measurement_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="unit_of_measurement" EntitySet="unit_of_measurement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_employee" Association="Self.FK_user_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_permission_permission" Association="Self.FK_user_permission_permission">
+      <End Role="permission" EntitySet="permission" />
+      <End Role="user_permission" EntitySet="user_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_permission_user" Association="Self.FK_user_permission_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_permission" EntitySet="user_permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_profile_profile" Association="Self.FK_user_profile_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="user_profile" EntitySet="user_profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_profile_user" Association="Self.FK_user_profile_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_profile" EntitySet="user_profile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

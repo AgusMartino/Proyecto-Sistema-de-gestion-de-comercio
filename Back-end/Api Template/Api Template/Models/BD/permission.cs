@@ -21,7 +21,7 @@ namespace Api_control_comercio.Models.BD
             this.user_permission = new HashSet<user_permission>();
         }
     
-        public int permission_id { get; set; }
+        public System.Guid permission_id { get; set; }
         public string permission_name { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }

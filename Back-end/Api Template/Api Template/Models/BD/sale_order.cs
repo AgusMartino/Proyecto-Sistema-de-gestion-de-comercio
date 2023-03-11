@@ -14,9 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class sale_order
     {
-        public int sale_order_id { get; set; }
-        public Nullable<int> sale_id { get; set; }
-        public Nullable<int> product_id { get; set; }
+        public System.Guid sale_order_id { get; set; }
+        public Nullable<System.Guid> sale_id { get; set; }
+        public Nullable<System.Guid> product_id { get; set; }
         public Nullable<int> quantity { get; set; }
         public Nullable<int> sale_order_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }

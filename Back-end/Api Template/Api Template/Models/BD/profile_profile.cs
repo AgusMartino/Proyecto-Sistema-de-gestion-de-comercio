@@ -14,9 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class profile_profile
     {
-        public int profile_profile_id { get; set; }
-        public Nullable<int> profile_father_id { get; set; }
-        public Nullable<int> profile_child_id { get; set; }
+        public System.Guid profile_profile_id { get; set; }
+        public Nullable<System.Guid> profile_father_id { get; set; }
+        public Nullable<System.Guid> profile_child_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     

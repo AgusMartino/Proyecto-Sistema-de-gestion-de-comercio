@@ -20,10 +20,10 @@ namespace Api_control_comercio.Models.BD
             this.payment_service = new HashSet<payment_service>();
         }
     
-        public int service_id { get; set; }
+        public System.Guid service_id { get; set; }
         public string service_code { get; set; }
         public string service_name { get; set; }
-        public Nullable<int> physical_location_id { get; set; }
+        public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     

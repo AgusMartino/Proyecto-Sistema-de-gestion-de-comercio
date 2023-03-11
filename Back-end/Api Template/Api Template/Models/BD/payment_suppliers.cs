@@ -20,9 +20,9 @@ namespace Api_control_comercio.Models.BD
             this.payment_suppliers_order = new HashSet<payment_suppliers_order>();
         }
     
-        public int payment_suppliers_id { get; set; }
-        public Nullable<int> supplier_id { get; set; }
-        public Nullable<int> physical_location_id { get; set; }
+        public System.Guid payment_suppliers_id { get; set; }
+        public Nullable<System.Guid> supplier_id { get; set; }
+        public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<int> payment_suppliers_cost { get; set; }
         public Nullable<int> payment_suppliers_pay { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }

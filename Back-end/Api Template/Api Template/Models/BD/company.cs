@@ -17,12 +17,12 @@ namespace Api_control_comercio.Models.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public company()
         {
+            this.payment_method = new HashSet<payment_method>();
             this.physical_location = new HashSet<physical_location>();
             this.raw_material = new HashSet<raw_material>();
-            this.unit_of_measurement = new HashSet<unit_of_measurement>();
         }
     
-        public int company_id { get; set; }
+        public System.Guid company_id { get; set; }
         public Nullable<int> company_cuit { get; set; }
         public string company_name { get; set; }
         public string company_address { get; set; }
@@ -31,10 +31,10 @@ namespace Api_control_comercio.Models.BD
         public Nullable<System.DateTime> modification_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<payment_method> payment_method { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<physical_location> physical_location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<raw_material> raw_material { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<unit_of_measurement> unit_of_measurement { get; set; }
     }
 }

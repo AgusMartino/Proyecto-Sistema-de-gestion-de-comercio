@@ -319,6 +319,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Contracts\IGenericCRUD.cs" />
+    <Compile Include="Controllers\ABMs\categoryManager.cs" />
+    <Compile Include="Controllers\ABMs\inventaryController.cs" />
+    <Compile Include="Controllers\ABMs\employeeController.cs" />
+    <Compile Include="Controllers\ABMs\companyController.cs" />
+    <Compile Include="Controllers\ABMs\profileController.cs" />
+    <Compile Include="Controllers\ABMs\permissionController.cs" />
+    <Compile Include="Controllers\ABMs\physicalLocationController.cs" />
+    <Compile Include="Controllers\ABMs\categoryController.cs" />
+    <Compile Include="Controllers\ABMs\rawMaterialController.cs" />
+    <Compile Include="Controllers\ABMs\productController.cs" />
+    <Compile Include="Controllers\ABMs\paymentMethodController.cs" />
+    <Compile Include="Controllers\ABMs\unitOfMeasurementController.cs" />
+    <Compile Include="Controllers\ABMs\userController.cs" />
+    <Compile Include="Controllers\ABMs\serviceController.cs" />
+    <Compile Include="Controllers\ABMs\supplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TesteoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -399,12 +414,6 @@
     <Compile Include="Models\BD\service.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BD\sp_helpdiagrams_Result.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BD\supplier.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
@@ -472,6 +481,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CryptographyService.cs" />
     <Compile Include="Utils\EnumHelper.cs" />
+    <Compile Include="Utils\Manager\ABMs\paymentMethodManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\userManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\unitOfMeasurementManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\supplierManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\serviceManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\rawMaterialManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\profileManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\productManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\physicalLocationManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\permissionManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\inventoryManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\employeeManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\companyManager.cs" />
+    <Compile Include="Utils\Manager\ABMs\categoryManager.cs" />
     <Compile Include="Utils\PermissionManager.cs" />
     <Compile Include="Utils\SerializationService.cs" />
     <Compile Include="Utils\SqlHelper.cs" />
@@ -567,13 +590,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Controllers\ABMs\" />
     <Folder Include="Controllers\Pagos\" />
     <Folder Include="Controllers\Ventas\" />
     <Folder Include="Entities\ABMs\" />
     <Folder Include="Entities\Pagos\" />
     <Folder Include="Entities\Ventas\" />
-    <Folder Include="Utils\Manager\ABMs\" />
     <Folder Include="Utils\Manager\Pagos\" />
     <Folder Include="Utils\Manager\Ventas\" />
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace Api_control_comercio.Models.BD
             this.user_profile = new HashSet<user_profile>();
         }
     
-        public int profile_id { get; set; }
+        public System.Guid profile_id { get; set; }
         public string profile_name { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
