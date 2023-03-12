@@ -1,4 +1,5 @@
 ﻿using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using System;
 using System.Collections.Generic;
@@ -7,31 +8,73 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public class companyManager : IGenericCRUD<company>
+    public sealed class companyManager : IGenericCRUD<company>
     {
+        #region singleton
+        private readonly static companyManager _instance = new companyManager();
+        public static companyManager Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+        private companyManager()
+        {
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
         public void Add(company obj)
         {
-            throw new NotImplementedException();
+            using(var db = new sistema_control_comercioEntities())
+            {
+                db.company.Add(obj);
+                db.SaveChanges();
+            }
         }
 
         public List<company> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                return db.company.ToList();
+            }
         }
 
         public company GetOne(Guid id)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj = db.company.ToList().Where(x => x.company_id == id).FirstOrDefault();
+
+                if (obj == null) throw new NotFoundException();
+                else return obj;
+            }
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            var obj = GetOne(id);
+            using(var db = new sistema_control_comercioEntities())
+            {
+                db.company.Remove(obj);
+                db.SaveChanges();
+            }
         }
 
         public void Update(company obj)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj_db = db.company.SingleOrDefault(b => b.company_id == obj.company_id);
+                if (obj_db == null) throw new NotFoundException();
+                else
+                {
+                    db.Entry(obj_db).CurrentValues.SetValues(obj);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

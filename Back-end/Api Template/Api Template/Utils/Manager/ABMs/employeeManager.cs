@@ -1,4 +1,5 @@
 ﻿using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using System;
 using System.Collections.Generic;
@@ -7,31 +8,74 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public class employeeManager : IGenericCRUD<employee>
+    public sealed class employeeManager : IGenericCRUD<employee>
     {
+        #region singleton
+        private readonly static employeeManager _instance = new employeeManager();
+        public static employeeManager Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+
+        private employeeManager()
+        {
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
         public void Add(employee obj)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                db.employee.Add(obj);
+                db.SaveChanges();
+            }
         }
 
         public List<employee> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                return db.employee.ToList();
+            }
         }
 
         public employee GetOne(Guid id)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj = db.employee.ToList().Where(x => x.employee_id == id).FirstOrDefault();
+
+                if (obj == null) throw new NotFoundException();
+                else return obj;
+            }
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            var obj = GetOne(id);
+            using (var db = new sistema_control_comercioEntities())
+            {
+                db.employee.Remove(obj);
+                db.SaveChanges();
+            }
         }
 
         public void Update(employee obj)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj_db = db.employee.SingleOrDefault(b => b.employee_id == obj.employee_id);
+                if (obj_db == null) throw new NotFoundException();
+                else
+                {
+                    db.Entry(obj_db).CurrentValues.SetValues(obj);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }
