@@ -8,46 +8,45 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class productRawMaterialManager : IGenericCRUD<product_rawmaterial>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static productRawMaterialManager _instance = new productRawMaterialManager();
+        public static productRawMaterialManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private productRawMaterialManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(product_rawmaterial obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.product_rawmaterial.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<product_rawmaterial> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.product_rawmaterial.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public product_rawmaterial GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.product_rawmaterial.ToList().Where(x => x.product_rawmaterial_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.product_rawmaterial.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(product_rawmaterial obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.product_rawmaterial.SingleOrDefault(b => b.product_rawmaterial_id == obj.product_rawmaterial_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

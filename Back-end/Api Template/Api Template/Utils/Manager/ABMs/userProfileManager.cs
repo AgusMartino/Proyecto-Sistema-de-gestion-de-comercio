@@ -8,46 +8,45 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class userProfileManager : IGenericCRUD<user_profile>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static userProfileManager _instance = new userProfileManager();
+        public static userProfileManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private userProfileManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(user_profile obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.user_profile.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<user_profile> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.user_profile.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public user_profile GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.user_profile.ToList().Where(x => x.user_profile_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.user_profile.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(user_profile obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.user_profile.SingleOrDefault(b => b.user_profile_id == obj.user_profile_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

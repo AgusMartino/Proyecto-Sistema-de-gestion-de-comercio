@@ -6,48 +6,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Api_control_comercio.Utils.Manager.ABMs
+namespace Api_control_comercio.Utils.Manager.Pagos
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class paymentSupplierOrderManager : IGenericCRUD<payment_suppliers_order>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static paymentSupplierOrderManager _instance = new paymentSupplierOrderManager();
+        public static paymentSupplierOrderManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private paymentSupplierOrderManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(payment_suppliers_order obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.payment_suppliers_order.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<payment_suppliers_order> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.payment_suppliers_order.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public payment_suppliers_order GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.payment_suppliers_order.ToList().Where(x => x.payment_suppliers_order_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.payment_suppliers_order.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(payment_suppliers_order obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.payment_suppliers_order.SingleOrDefault(b => b.payment_suppliers_order_id == obj.payment_suppliers_order_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

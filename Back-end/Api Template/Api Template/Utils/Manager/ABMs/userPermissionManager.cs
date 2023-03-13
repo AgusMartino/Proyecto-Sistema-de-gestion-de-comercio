@@ -8,46 +8,45 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class userPermissionManager : IGenericCRUD<user_permission>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static userPermissionManager _instance = new userPermissionManager();
+        public static userPermissionManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private userPermissionManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(user_permission obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.user_permission.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<user_permission> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.user_permission.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public user_permission GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.user_permission.ToList().Where(x => x.user_permission_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.user_permission.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(user_permission obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.user_permission.SingleOrDefault(b => b.user_permission_id == obj.user_permission_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

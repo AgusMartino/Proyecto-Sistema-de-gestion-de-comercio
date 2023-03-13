@@ -8,46 +8,45 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class profilePermissionManager : IGenericCRUD<profile_permission>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static profilePermissionManager _instance = new profilePermissionManager();
+        public static profilePermissionManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private profilePermissionManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(profile_permission obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.profile_permission.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<profile_permission> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.profile_permission.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public profile_permission GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.profile_permission.ToList().Where(x => x.profile_permission_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.profile_permission.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(profile_permission obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.profile_permission.SingleOrDefault(b => b.profile_permission_id == obj.profile_permission_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

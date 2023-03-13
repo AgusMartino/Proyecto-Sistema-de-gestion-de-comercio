@@ -6,48 +6,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Api_control_comercio.Utils.Manager.ABMs
+namespace Api_control_comercio.Utils.Manager.Ventas
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class SaleManager : IGenericCRUD<sale>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static SaleManager _instance = new SaleManager();
+        public static SaleManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private SaleManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(sale obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.sale.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<sale> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.sale.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public sale GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.sale.ToList().Where(x => x.sale_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.sale.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(sale obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.sale.SingleOrDefault(b => b.sale_id == obj.sale_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

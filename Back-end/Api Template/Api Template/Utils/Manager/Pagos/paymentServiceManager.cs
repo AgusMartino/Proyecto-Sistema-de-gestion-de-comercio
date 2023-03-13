@@ -6,48 +6,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Api_control_comercio.Utils.Manager.ABMs
+namespace Api_control_comercio.Utils.Manager.Pagos
 {
-    public sealed class userManager : IGenericCRUD<user>
+    public sealed class paymentServiceManager : IGenericCRUD<payment_service>
     {
         #region singleton
-        private readonly static userManager _instance = new userManager();
-        public static userManager Current
+        private readonly static paymentServiceManager _instance = new paymentServiceManager();
+        public static paymentServiceManager Current
         {
             get
             {
                 return _instance;
             }
         }
-
-        private userManager()
+        private paymentServiceManager()
         {
-             //Implent here the initialization of your singleton
+            //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(user obj)
+        public void Add(payment_service obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Add(obj);
+                db.payment_service.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<user> GetAll()
+        public List<payment_service> GetAll()
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                return db.user.ToList();
+                return db.payment_service.ToList();
             }
         }
 
-        public user GetOne(Guid id)
+        public payment_service GetOne(Guid id)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
+                var obj = db.payment_service.ToList().Where(x => x.payment_service_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -59,16 +58,16 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             var obj = GetOne(id);
             using (var db = new sistema_control_comercioEntities())
             {
-                db.user.Remove(obj);
+                db.payment_service.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(user obj)
+        public void Update(payment_service obj)
         {
             using (var db = new sistema_control_comercioEntities())
             {
-                var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
+                var obj_db = db.payment_service.SingleOrDefault(b => b.payment_service_id == obj.payment_service_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {
