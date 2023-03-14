@@ -10,13 +10,13 @@ using System.Web.Http;
 
 namespace Api_control_comercio.Controllers.ABMs
 {
-    public class unitOfMeasurementController : ApiController
+    public class userProfileController : ApiController
     {
         #region Singleton
-        private readonly static unitOfMeasurementController _instance;
-        public static unitOfMeasurementController Current { get { return _instance; } }
-        static unitOfMeasurementController() { _instance = new unitOfMeasurementController(); }
-        private unitOfMeasurementController()
+        private readonly static userProfileController _instance;
+        public static userProfileController Current { get { return _instance; } }
+        static userProfileController() { _instance = new userProfileController(); }
+        private userProfileController()
         {
             //Implent here the initialization of your singleton
         }
@@ -27,7 +27,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetAll());
+                return Ok(userProfileManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetOne(id));
+                return Ok(userProfileManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -57,11 +57,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Add([FromBody] user_profile user_Profile)
         {
             try
             {
-                unitOfMeasurementManager.Current.Add(unit_Of_Measurement);
+                userProfileManager.Current.Add(user_Profile);
                 return Ok();
             }
             catch (NotFoundException)
@@ -75,11 +75,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Update([FromBody] user_profile user_Profile)
         {
             try
             {
-                unitOfMeasurementManager.Current.Update(unit_Of_Measurement);
+                userProfileManager.Current.Update(user_Profile);
                 return Ok();
             }
             catch (NotFoundException)
@@ -97,7 +97,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                unitOfMeasurementManager.Current.Remove(id);
+                userProfileManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

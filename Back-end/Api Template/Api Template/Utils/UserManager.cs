@@ -7,7 +7,8 @@ using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.Template;
 
 namespace Api_control_comercio.Utils
-{
+{ }
+    /*
     public class UserManager : IGenericCRUD<Usuario>
     {
         #region Singleton
@@ -161,3 +162,4 @@ namespace Api_control_comercio.Utils
         }
     }
 }
+    */

@@ -1,12 +1,12 @@
 using Swashbuckle.Application;
 using System.IO;
 using System.Web.Http;
-using Api_control_comercio;
+using Api_Template;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace Api_control_comercio
+namespace Api_Template
 {
     public class SwaggerConfig
     {
@@ -30,15 +30,15 @@ namespace Api_control_comercio
                     //
                     // DEFINIMOS LAS CARACTERÍSTICAS DEL WEB API.
                     c.SingleApiVersion("v1", "API Rest MCGA")
-                            /*.Description("API Rest destinada a un proyecto de alumnos UAI.")
-                            .TermsOfService("Términos de servicio.")
-                            .Contact(x => x
-                                .Name("Rafael Acosta")
-                                .Url("http://www.rafaelacosta.net/api-doc.pdf")
-                                .Email("info@rafaelacosta.net"))
-                            .License(x => x
-                                .Name("Licencia")
-                                .Url("http://www.rafaelacosta.net/license"))*/;
+                                /*.Description("API Rest destinada a un proyecto de alumnos UAI.")
+                                .TermsOfService("Términos de servicio.")
+                                .Contact(x => x
+                                    .Name("Rafael Acosta")
+                                    .Url("http://www.rafaelacosta.net/api-doc.pdf")
+                                    .Email("info@rafaelacosta.net"))
+                                .License(x => x
+                                    .Name("Licencia")
+                                    .Url("http://www.rafaelacosta.net/license"))*/;
 
                     // If you annotate Controllers and API Types with
                     // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate

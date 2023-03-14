@@ -319,7 +319,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Contracts\IGenericCRUD.cs" />
-    <Compile Include="Controllers\ABMs\categoryManager.cs" />
+    <Compile Include="Controllers\ABMs\profilePermissionController.cs" />
+    <Compile Include="Controllers\ABMs\profileProfileController.cs" />
+    <Compile Include="Controllers\ABMs\userProfileController.cs" />
+    <Compile Include="Controllers\ABMs\userPermissionController.cs" />
+    <Compile Include="Controllers\ABMs\productRawMaterialController.cs" />
     <Compile Include="Controllers\ABMs\inventaryController.cs" />
     <Compile Include="Controllers\ABMs\employeeController.cs" />
     <Compile Include="Controllers\ABMs\companyController.cs" />
@@ -335,8 +339,13 @@
     <Compile Include="Controllers\ABMs\serviceController.cs" />
     <Compile Include="Controllers\ABMs\supplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Pagos\paymentSupplierOrderController.cs" />
+    <Compile Include="Controllers\Pagos\paymentSupplierController.cs" />
+    <Compile Include="Controllers\Pagos\paymentServiceController.cs" />
     <Compile Include="Controllers\TesteoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\Ventas\saleController.cs" />
+    <Compile Include="Controllers\Ventas\saleOrderController.cs" />
     <Compile Include="Entities\Exceptions\AlreadyExistsException.cs" />
     <Compile Include="Entities\Exceptions\NotFoundException.cs" />
     <Compile Include="Entities\LoginBody.cs" />
@@ -600,8 +609,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Controllers\Pagos\" />
-    <Folder Include="Controllers\Ventas\" />
     <Folder Include="Entities\ABMs\" />
     <Folder Include="Entities\Pagos\" />
     <Folder Include="Entities\Ventas\" />

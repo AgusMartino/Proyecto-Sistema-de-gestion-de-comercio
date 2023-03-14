@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +12,101 @@ namespace Api_control_comercio.Controllers.ABMs
 {
     public class companyController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static companyController _instance;
+        public static companyController Current { get { return _instance; } }
+        static companyController() { _instance = new companyController(); }
+        private companyController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(companyManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOne([FromBody] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(companyManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] company company)
         {
+            try
+            {
+                companyManager.Current.Add(company);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] company company)
         {
+            try
+            {
+                companyManager.Current.Update(company);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Remove([FromBody] Guid id)
         {
+            try
+            {
+                companyManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

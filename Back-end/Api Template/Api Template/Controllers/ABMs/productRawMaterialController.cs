@@ -10,13 +10,13 @@ using System.Web.Http;
 
 namespace Api_control_comercio.Controllers.ABMs
 {
-    public class unitOfMeasurementController : ApiController
+    public class productRawMaterialController : ApiController
     {
         #region Singleton
-        private readonly static unitOfMeasurementController _instance;
-        public static unitOfMeasurementController Current { get { return _instance; } }
-        static unitOfMeasurementController() { _instance = new unitOfMeasurementController(); }
-        private unitOfMeasurementController()
+        private readonly static productRawMaterialController _instance;
+        public static productRawMaterialController Current { get { return _instance; } }
+        static productRawMaterialController() { _instance = new productRawMaterialController(); }
+        private productRawMaterialController()
         {
             //Implent here the initialization of your singleton
         }
@@ -27,7 +27,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetAll());
+                return Ok(productRawMaterialManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetOne(id));
+                return Ok(productRawMaterialManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -57,11 +57,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Add([FromBody] product_rawmaterial product_Rawmaterial)
         {
             try
             {
-                unitOfMeasurementManager.Current.Add(unit_Of_Measurement);
+                productRawMaterialManager.Current.Add(product_Rawmaterial);
                 return Ok();
             }
             catch (NotFoundException)
@@ -75,11 +75,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Update([FromBody] product_rawmaterial product_Rawmaterial)
         {
             try
             {
-                unitOfMeasurementManager.Current.Update(unit_Of_Measurement);
+                productRawMaterialManager.Current.Update(product_Rawmaterial);
                 return Ok();
             }
             catch (NotFoundException)
@@ -97,7 +97,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                unitOfMeasurementManager.Current.Remove(id);
+                productRawMaterialManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

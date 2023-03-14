@@ -4,7 +4,7 @@ using System.Web.Http.Results;
 using Api_control_comercio.Utils;
 
 namespace Api_control_comercio.Controllers
-{
+{ }/*
     public class TesteoController : ApiController
     {
         #region Singleton
@@ -97,3 +97,4 @@ namespace Api_control_comercio.Controllers
         }
     }
 }
+*/

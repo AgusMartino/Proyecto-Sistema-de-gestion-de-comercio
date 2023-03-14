@@ -12,7 +12,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
     {
         #region singleton
         private readonly static paymentSupplierManager _instance = new paymentSupplierManager();
-        public static paymentServiceManager Current
+        public static paymentSupplierManager Current
         {
             get
             {

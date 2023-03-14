@@ -1,4 +1,5 @@
 ﻿using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,73 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 {
     public class supplierManager : IGenericCRUD<supplier>
     {
+        #region singleton
+        private readonly static supplierManager _instance = new supplierManager();
+
+        public static supplierManager Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private supplierManager()
+        {
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
         public void Add(supplier obj)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                db.supplier.Add(obj);
+                db.SaveChanges();
+            }
         }
 
         public List<supplier> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                return db.supplier.ToList();
+            }
         }
 
         public supplier GetOne(Guid id)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj = db.supplier.ToList().Where(x => x.supplier_id == id).FirstOrDefault();
+
+                if (obj == null) throw new NotFoundException();
+                else return obj;
+            }
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            var obj = GetOne(id);
+            using (var db = new sistema_control_comercioEntities())
+            {
+                db.supplier.Remove(obj);
+                db.SaveChanges();
+            }
         }
 
         public void Update(supplier obj)
         {
-            throw new NotImplementedException();
+            using (var db = new sistema_control_comercioEntities())
+            {
+                var obj_db = db.supplier.SingleOrDefault(b => b.supplier_id == obj.supplier_id);
+                if (obj_db == null) throw new NotFoundException();
+                else
+                {
+                    db.Entry(obj_db).CurrentValues.SetValues(obj);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

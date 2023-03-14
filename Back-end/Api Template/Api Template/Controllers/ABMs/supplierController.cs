@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +12,102 @@ namespace Api_control_comercio.Controllers.ABMs
 {
     public class supplierController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static supplierController _instance;
+        public static supplierController Current { get { return _instance; } }
+        static supplierController() { _instance = new supplierController(); }
+        private supplierController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(supplierManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOne([FromBody] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(supplierManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] supplier supplier)
         {
+            try
+            {
+                supplierManager.Current.Add(supplier);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] supplier supplier)
         {
+            try
+            {
+                supplierManager.Current.Update(supplier);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Remove([FromBody] Guid id)
         {
+            try
+            {
+                supplierManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

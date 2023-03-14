@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +12,102 @@ namespace Api_control_comercio.Controllers.ABMs
 {
     public class paymentMethodController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static paymentMethodController _instance;
+        public static paymentMethodController Current { get { return _instance; } }
+        static paymentMethodController() { _instance = new paymentMethodController(); }
+        private paymentMethodController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(paymentMethodManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOne([FromBody] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(paymentMethodManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] payment_method payment_method)
         {
+            try
+            {
+                paymentMethodManager.Current.Add(payment_method);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] payment_method payment_method)
         {
+            try
+            {
+                paymentMethodManager.Current.Update(payment_method);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Remove([FromBody] Guid id)
         {
+            try
+            {
+                paymentMethodManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

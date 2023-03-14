@@ -1,39 +1,116 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FromBodyAttribute = System.Web.Http.FromBodyAttribute;
+using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
+using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 
 namespace Api_control_comercio.Controllers.ABMs
 {
     public class categoryController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static categoryController _instance;
+        public static categoryController Current { get { return _instance; } }
+        static categoryController() { _instance = new categoryController(); }
+        private categoryController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(categoryManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOne([FromBody] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(categoryManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] category category)
         {
+            try
+            {
+                categoryManager.Current.Add(category);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] category category)
         {
+            try
+            {
+                categoryManager.Current.Update(category);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Remove([FromBody] Guid id)
         {
+            try
+            {
+                categoryManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

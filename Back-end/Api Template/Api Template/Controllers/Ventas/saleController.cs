@@ -1,6 +1,7 @@
 ﻿using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
+using Api_control_comercio.Utils.Manager.Ventas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Api_control_comercio.Controllers.ABMs
+namespace Api_control_comercio.Controllers.Ventas
 {
-    public class unitOfMeasurementController : ApiController
+    public class saleController : ApiController
     {
         #region Singleton
-        private readonly static unitOfMeasurementController _instance;
-        public static unitOfMeasurementController Current { get { return _instance; } }
-        static unitOfMeasurementController() { _instance = new unitOfMeasurementController(); }
-        private unitOfMeasurementController()
+        private readonly static saleController _instance;
+        public static saleController Current { get { return _instance; } }
+        static saleController() { _instance = new saleController(); }
+        private saleController()
         {
             //Implent here the initialization of your singleton
         }
@@ -27,7 +28,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetAll());
+                return Ok(SaleManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -44,7 +45,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetOne(id));
+                return Ok(SaleManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -57,11 +58,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Add([FromBody] sale sale)
         {
             try
             {
-                unitOfMeasurementManager.Current.Add(unit_Of_Measurement);
+                SaleManager.Current.Add(sale);
                 return Ok();
             }
             catch (NotFoundException)
@@ -75,11 +76,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Update([FromBody] sale sale)
         {
             try
             {
-                unitOfMeasurementManager.Current.Update(unit_Of_Measurement);
+                SaleManager.Current.Update(sale);
                 return Ok();
             }
             catch (NotFoundException)
@@ -97,7 +98,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                unitOfMeasurementManager.Current.Remove(id);
+                SaleManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

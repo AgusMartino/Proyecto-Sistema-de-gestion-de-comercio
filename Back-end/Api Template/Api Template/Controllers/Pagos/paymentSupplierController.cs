@@ -1,6 +1,7 @@
 ﻿using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
+using Api_control_comercio.Utils.Manager.Pagos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Api_control_comercio.Controllers.ABMs
+namespace Api_control_comercio.Controllers.Pagos
 {
-    public class unitOfMeasurementController : ApiController
+    public class paymentSupplierController : ApiController
     {
         #region Singleton
-        private readonly static unitOfMeasurementController _instance;
-        public static unitOfMeasurementController Current { get { return _instance; } }
-        static unitOfMeasurementController() { _instance = new unitOfMeasurementController(); }
-        private unitOfMeasurementController()
+        private readonly static paymentSupplierController _instance;
+        public static paymentSupplierController Current { get { return _instance; } }
+        static paymentSupplierController() { _instance = new paymentSupplierController(); }
+        private paymentSupplierController()
         {
             //Implent here the initialization of your singleton
         }
@@ -27,7 +28,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetAll());
+                return Ok(paymentSupplierManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -44,7 +45,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetOne(id));
+                return Ok(paymentSupplierManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -57,11 +58,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Add([FromBody] payment_suppliers payment_Suppliers)
         {
             try
             {
-                unitOfMeasurementManager.Current.Add(unit_Of_Measurement);
+                paymentSupplierManager.Current.Add(payment_Suppliers);
                 return Ok();
             }
             catch (NotFoundException)
@@ -75,11 +76,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Update([FromBody] payment_suppliers payment_Suppliers)
         {
             try
             {
-                unitOfMeasurementManager.Current.Update(unit_Of_Measurement);
+                paymentSupplierManager.Current.Update(payment_Suppliers);
                 return Ok();
             }
             catch (NotFoundException)
@@ -97,7 +98,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                unitOfMeasurementManager.Current.Remove(id);
+                paymentSupplierManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

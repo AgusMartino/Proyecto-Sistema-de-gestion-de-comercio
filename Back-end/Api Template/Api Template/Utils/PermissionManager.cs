@@ -7,7 +7,8 @@ using Api_control_comercio.Entities.Exceptions;
 using System.Linq;
 
 namespace Api_control_comercio.Utils
-{
+{ }
+/*
     public class PermissionManager : IGenericCRUD<Permiso>
     {
         #region Singleton
@@ -77,3 +78,4 @@ namespace Api_control_comercio.Utils
         }
     }
 }
+*/

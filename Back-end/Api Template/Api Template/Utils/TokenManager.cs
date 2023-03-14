@@ -9,7 +9,8 @@ using System.Linq;
 using Microsoft.Ajax.Utilities;
 
 namespace Api_control_comercio.Utils
-{
+{ }
+    /*
     public class TokenManager : IGenericCRUD<Token>
     {
         #region Singleton
@@ -102,3 +103,4 @@ namespace Api_control_comercio.Utils
         }
     }
 }
+    */

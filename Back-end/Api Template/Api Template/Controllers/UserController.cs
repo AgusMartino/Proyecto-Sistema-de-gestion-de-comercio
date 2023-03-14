@@ -8,7 +8,7 @@ using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Contracts;
 
 namespace Api_control_comercio.Controllers
-{
+{ } /*
     //[Authorize]
     [AllowAnonymous]
     public class UserController : ApiController
@@ -203,4 +203,4 @@ namespace Api_control_comercio.Controllers
             }
         }
     }
-}
+}*/

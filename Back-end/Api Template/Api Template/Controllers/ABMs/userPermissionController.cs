@@ -10,13 +10,13 @@ using System.Web.Http;
 
 namespace Api_control_comercio.Controllers.ABMs
 {
-    public class unitOfMeasurementController : ApiController
+    public class userPermissionController : ApiController
     {
         #region Singleton
-        private readonly static unitOfMeasurementController _instance;
-        public static unitOfMeasurementController Current { get { return _instance; } }
-        static unitOfMeasurementController() { _instance = new unitOfMeasurementController(); }
-        private unitOfMeasurementController()
+        private readonly static userPermissionController _instance;
+        public static userPermissionController Current { get { return _instance; } }
+        static userPermissionController() { _instance = new userPermissionController(); }
+        private userPermissionController()
         {
             //Implent here the initialization of your singleton
         }
@@ -27,7 +27,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetAll());
+                return Ok(userPermissionManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(unitOfMeasurementManager.Current.GetOne(id));
+                return Ok(userPermissionManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -57,11 +57,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Add([FromBody] user_permission user_Permission)
         {
             try
             {
-                unitOfMeasurementManager.Current.Add(unit_Of_Measurement);
+                userPermissionManager.Current.Add(user_Permission);
                 return Ok();
             }
             catch (NotFoundException)
@@ -75,11 +75,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] unit_of_measurement unit_Of_Measurement)
+        public IHttpActionResult Update([FromBody] user_permission user_Permission)
         {
             try
             {
-                unitOfMeasurementManager.Current.Update(unit_Of_Measurement);
+                userPermissionManager.Current.Update(user_Permission);
                 return Ok();
             }
             catch (NotFoundException)
@@ -97,7 +97,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                unitOfMeasurementManager.Current.Remove(id);
+                userPermissionManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

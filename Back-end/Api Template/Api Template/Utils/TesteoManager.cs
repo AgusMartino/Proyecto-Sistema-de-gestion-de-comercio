@@ -6,7 +6,8 @@ using System.Linq;
 using Api_control_comercio.Models.Template;
 
 namespace Api_control_comercio.Utils
-{
+{ }
+/*
     public class TesteoManager
     {
         #region Singleton
@@ -37,3 +38,4 @@ namespace Api_control_comercio.Utils
         }
     }
 }
+*/
