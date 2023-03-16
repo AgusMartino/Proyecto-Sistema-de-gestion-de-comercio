@@ -14,24 +14,11 @@ namespace Api_control_comercio.Models.BD
     
     public partial class user
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
-        {
-            this.user_permission = new HashSet<user_permission>();
-            this.user_profile = new HashSet<user_profile>();
-        }
-    
         public System.Guid user_id { get; set; }
         public string user_name { get; set; }
         public string user_password { get; set; }
         public Nullable<System.Guid> employee_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual employee employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_permission> user_permission { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_profile> user_profile { get; set; }
     }
 }

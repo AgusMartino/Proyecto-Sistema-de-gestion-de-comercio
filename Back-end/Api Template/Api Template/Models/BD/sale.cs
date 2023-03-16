@@ -14,12 +14,6 @@ namespace Api_control_comercio.Models.BD
     
     public partial class sale
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sale()
-        {
-            this.sale_order = new HashSet<sale_order>();
-        }
-    
         public System.Guid sale_id { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.Guid> employee_id { get; set; }
@@ -27,10 +21,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<System.Guid> payment_method_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual payment_method payment_method { get; set; }
-        public virtual physical_location physical_location { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sale_order> sale_order { get; set; }
     }
 }

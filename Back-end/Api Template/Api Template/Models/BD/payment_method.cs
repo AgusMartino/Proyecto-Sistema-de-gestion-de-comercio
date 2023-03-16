@@ -14,20 +14,10 @@ namespace Api_control_comercio.Models.BD
     
     public partial class payment_method
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public payment_method()
-        {
-            this.sale = new HashSet<sale>();
-        }
-    
         public System.Guid payment_method_id { get; set; }
         public string payment_method_name { get; set; }
         public Nullable<System.Guid> company_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual company company { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sale> sale { get; set; }
     }
 }

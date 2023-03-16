@@ -28,7 +28,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(unit_of_measurement obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.unit_of_measurement.Add(obj);
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<unit_of_measurement> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.unit_of_measurement.ToList();
             }
@@ -45,7 +45,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public unit_of_measurement GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.unit_of_measurement.ToList().Where(x => x.unit_of_measurement_id == id).FirstOrDefault();
 
@@ -57,8 +57,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.unit_of_measurement.Attach(obj);
                 db.unit_of_measurement.Remove(obj);
                 db.SaveChanges();
             }
@@ -66,7 +67,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(unit_of_measurement obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.unit_of_measurement.SingleOrDefault(b => b.unit_of_measurement_id == obj.unit_of_measurement_id);
                 if (obj_db == null) throw new NotFoundException();

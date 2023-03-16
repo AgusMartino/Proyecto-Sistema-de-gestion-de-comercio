@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(user_permission obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user_permission.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<user_permission> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.user_permission.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public user_permission GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.user_permission.ToList().Where(x => x.user_permission_id == id).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user_permission.Remove(obj);
                 db.SaveChanges();
@@ -65,7 +65,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(user_permission obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.user_permission.SingleOrDefault(b => b.user_permission_id == obj.user_permission_id);
                 if (obj_db == null) throw new NotFoundException();

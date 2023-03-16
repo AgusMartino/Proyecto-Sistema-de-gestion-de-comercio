@@ -26,7 +26,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         #endregion
         public void Add(payment_method obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.payment_method.Add(obj);
                 db.SaveChanges();
@@ -35,7 +35,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<payment_method> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.payment_method.ToList();
             }
@@ -43,7 +43,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public payment_method GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.payment_method.ToList().Where(x => x.payment_method_id == id).FirstOrDefault();
 
@@ -55,8 +55,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.payment_method.Attach(obj);
                 db.payment_method.Remove(obj);
                 db.SaveChanges();
             }
@@ -64,7 +65,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(payment_method obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.payment_method.SingleOrDefault(b => b.payment_method_id == obj.payment_method_id);
                 if (obj_db == null) throw new NotFoundException();

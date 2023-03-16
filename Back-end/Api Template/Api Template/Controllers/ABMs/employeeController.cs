@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +12,102 @@ namespace Api_control_comercio.Controllers.ABMs
 {
     public class employeeController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static employeeController _instance;
+        public static employeeController Current { get { return _instance; } }
+        static employeeController() { _instance = new employeeController(); }
+        private employeeController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(employeeManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOne([FromUri] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(employeeManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] employee employee)
         {
+            try
+            {
+                employeeManager.Current.Add(employee);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] employee employee)
         {
+            try
+            {
+                employeeManager.Current.Update(employee);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Remove([FromUri] Guid id)
         {
+            try
+            {
+                employeeManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(user_profile obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user_profile.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<user_profile> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.user_profile.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public user_profile GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.user_profile.ToList().Where(x => x.user_profile_id == id).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user_profile.Remove(obj);
                 db.SaveChanges();
@@ -65,7 +65,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(user_profile obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.user_profile.SingleOrDefault(b => b.user_profile_id == obj.user_profile_id);
                 if (obj_db == null) throw new NotFoundException();

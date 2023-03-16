@@ -14,19 +14,10 @@ namespace Api_control_comercio.Models.BD
     
     public partial class unit_of_measurement
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public unit_of_measurement()
-        {
-            this.raw_material = new HashSet<raw_material>();
-        }
-    
         public System.Guid unit_of_measurement_id { get; set; }
         public string unit_of_measurement_name { get; set; }
         public Nullable<System.Guid> company_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<raw_material> raw_material { get; set; }
     }
 }

@@ -14,21 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class permission
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public permission()
-        {
-            this.profile_permission = new HashSet<profile_permission>();
-            this.user_permission = new HashSet<user_permission>();
-        }
-    
         public System.Guid permission_id { get; set; }
         public string permission_name { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<profile_permission> profile_permission { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_permission> user_permission { get; set; }
     }
 }

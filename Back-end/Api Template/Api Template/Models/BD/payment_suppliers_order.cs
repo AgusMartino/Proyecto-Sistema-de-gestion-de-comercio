@@ -21,8 +21,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> payment_suppliers_cost { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual payment_suppliers payment_suppliers { get; set; }
-        public virtual raw_material raw_material { get; set; }
     }
 }

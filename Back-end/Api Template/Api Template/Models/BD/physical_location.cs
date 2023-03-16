@@ -14,19 +14,6 @@ namespace Api_control_comercio.Models.BD
     
     public partial class physical_location
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public physical_location()
-        {
-            this.employee = new HashSet<employee>();
-            this.inventary = new HashSet<inventary>();
-            this.payment_service = new HashSet<payment_service>();
-            this.payment_suppliers = new HashSet<payment_suppliers>();
-            this.product = new HashSet<product>();
-            this.sale = new HashSet<sale>();
-            this.service = new HashSet<service>();
-            this.supplier = new HashSet<supplier>();
-        }
-    
         public System.Guid physical_location_id { get; set; }
         public Nullable<int> physical_location_cuit { get; set; }
         public string physical_location_name { get; set; }
@@ -35,23 +22,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<System.Guid> company_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual company company { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employee> employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inventary> inventary { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment_service> payment_service { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment_suppliers> payment_suppliers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product> product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sale> sale { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<service> service { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<supplier> supplier { get; set; }
     }
 }

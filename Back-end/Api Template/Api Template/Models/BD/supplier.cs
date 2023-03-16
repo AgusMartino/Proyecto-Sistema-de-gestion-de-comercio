@@ -14,12 +14,6 @@ namespace Api_control_comercio.Models.BD
     
     public partial class supplier
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public supplier()
-        {
-            this.payment_suppliers = new HashSet<payment_suppliers>();
-        }
-    
         public System.Guid supplier_id { get; set; }
         public Nullable<int> supplier_cuit { get; set; }
         public string supplier_name { get; set; }
@@ -29,9 +23,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modificatrion_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment_suppliers> payment_suppliers { get; set; }
-        public virtual physical_location physical_location { get; set; }
     }
 }

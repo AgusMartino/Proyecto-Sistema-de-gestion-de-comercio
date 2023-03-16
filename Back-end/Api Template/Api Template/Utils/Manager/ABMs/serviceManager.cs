@@ -29,7 +29,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(service obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.service.Add(obj);
                 db.SaveChanges();
@@ -38,7 +38,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<service> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.service.ToList();
             }
@@ -46,7 +46,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public service GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.service.ToList().Where(x => x.service_id == id).FirstOrDefault();
 
@@ -58,8 +58,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.service.Attach(obj);
                 db.service.Remove(obj);
                 db.SaveChanges();
             }
@@ -67,7 +68,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(service obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.service.SingleOrDefault(b => b.service_id == obj.service_id);
                 if (obj_db == null) throw new NotFoundException();

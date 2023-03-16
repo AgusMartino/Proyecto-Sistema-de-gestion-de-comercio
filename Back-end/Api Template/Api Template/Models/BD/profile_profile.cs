@@ -19,8 +19,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<System.Guid> profile_child_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual profile profile { get; set; }
-        public virtual profile profile1 { get; set; }
     }
 }

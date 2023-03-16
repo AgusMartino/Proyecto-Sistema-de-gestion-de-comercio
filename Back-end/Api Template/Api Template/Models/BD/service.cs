@@ -14,21 +14,11 @@ namespace Api_control_comercio.Models.BD
     
     public partial class service
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public service()
-        {
-            this.payment_service = new HashSet<payment_service>();
-        }
-    
         public System.Guid service_id { get; set; }
         public string service_code { get; set; }
         public string service_name { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment_service> payment_service { get; set; }
-        public virtual physical_location physical_location { get; set; }
     }
 }

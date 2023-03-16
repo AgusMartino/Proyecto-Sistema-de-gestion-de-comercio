@@ -21,8 +21,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> sale_order_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual product product { get; set; }
-        public virtual sale sale { get; set; }
     }
 }

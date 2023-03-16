@@ -1,0 +1,931 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sistema_control_comercioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="category_code" Type="varchar" MaxLength="50" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="category_name" Type="varchar" MaxLength="50" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="company_id" />
+          </Key>
+          <Property Name="company_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="company_cuit" Type="int" />
+          <Property Name="company_name" Type="varchar" MaxLength="50" />
+          <Property Name="company_address" Type="varchar" MaxLength="50" />
+          <Property Name="company_cellphone" Type="int" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="employee_dni" Type="int" />
+          <Property Name="employee_name" Type="varchar" MaxLength="50" />
+          <Property Name="employee_lastname" Type="varchar" MaxLength="50" />
+          <Property Name="employee_address" Type="varchar" MaxLength="50" />
+          <Property Name="employee_cellphone" Type="int" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="inventary">
+          <Key>
+            <PropertyRef Name="inventary_id" />
+          </Key>
+          <Property Name="inventary_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="raw_material_id" Type="uniqueidentifier" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="payment_method">
+          <Key>
+            <PropertyRef Name="payment_method_id" />
+          </Key>
+          <Property Name="payment_method_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="payment_method_name" Type="varchar" MaxLength="50" />
+          <Property Name="company_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="payment_service">
+          <Key>
+            <PropertyRef Name="payment_service_id" />
+          </Key>
+          <Property Name="payment_service_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="service_id" Type="uniqueidentifier" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="payment_service_price" Type="int" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="payment_suppliers">
+          <Key>
+            <PropertyRef Name="payment_suppliers_id" />
+          </Key>
+          <Property Name="payment_suppliers_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="supplier_id" Type="uniqueidentifier" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="payment_suppliers_cost" Type="int" />
+          <Property Name="payment_suppliers_pay" Type="int" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="payment_suppliers_order">
+          <Key>
+            <PropertyRef Name="payment_suppliers_order_id" />
+          </Key>
+          <Property Name="payment_suppliers_order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="payment_suppliers_id" Type="uniqueidentifier" />
+          <Property Name="raw_material_id" Type="uniqueidentifier" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="payment_suppliers_cost" Type="int" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="permission_name" Type="varchar" MaxLength="50" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="physical_location">
+          <Key>
+            <PropertyRef Name="physical_location_id" />
+          </Key>
+          <Property Name="physical_location_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="physical_location_cuit" Type="int" />
+          <Property Name="physical_location_name" Type="varchar" MaxLength="50" />
+          <Property Name="physical_location_cellphone" Type="int" />
+          <Property Name="physical_location_address" Type="varchar" MaxLength="50" />
+          <Property Name="company_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="product_code" Type="varchar" MaxLength="50" />
+          <Property Name="product_name" Type="varchar" MaxLength="50" />
+          <Property Name="product_cost" Type="int" />
+          <Property Name="product_price" Type="int" />
+          <Property Name="category_id" Type="uniqueidentifier" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product_rawmaterial">
+          <Key>
+            <PropertyRef Name="product_rawmaterial_id" />
+          </Key>
+          <Property Name="product_rawmaterial_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="product_id" Type="uniqueidentifier" />
+          <Property Name="raw_material_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="profile_id" />
+          </Key>
+          <Property Name="profile_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="profile_name" Type="varchar" MaxLength="50" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="profile_permission">
+          <Key>
+            <PropertyRef Name="profile_permission_id" />
+          </Key>
+          <Property Name="profile_permission_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="profile_id" Type="uniqueidentifier" />
+          <Property Name="permission_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="profile_profile">
+          <Key>
+            <PropertyRef Name="profile_profile_id" />
+          </Key>
+          <Property Name="profile_profile_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="profile_father_id" Type="uniqueidentifier" />
+          <Property Name="profile_child_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="raw_material">
+          <Key>
+            <PropertyRef Name="raw_material_id" />
+          </Key>
+          <Property Name="raw_material_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="raw_material_code" Type="varchar" MaxLength="50" />
+          <Property Name="raw_material_name" Type="varchar" MaxLength="50" />
+          <Property Name="raw_material_cost" Type="int" />
+          <Property Name="company_id" Type="uniqueidentifier" />
+          <Property Name="unit_of_measurement_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="sale_id" />
+          </Key>
+          <Property Name="sale_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="employee_id" Type="uniqueidentifier" />
+          <Property Name="sale_price" Type="int" />
+          <Property Name="payment_method_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sale_order">
+          <Key>
+            <PropertyRef Name="sale_order_id" />
+          </Key>
+          <Property Name="sale_order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sale_id" Type="uniqueidentifier" />
+          <Property Name="product_id" Type="uniqueidentifier" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="sale_order_price" Type="int" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="service_code" Type="varchar" MaxLength="50" />
+          <Property Name="service_name" Type="varchar" MaxLength="50" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="supplier_cuit" Type="int" />
+          <Property Name="supplier_name" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_cellphone" Type="int" />
+          <Property Name="supplier_address" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_debt" Type="int" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modificatrion_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="unit_of_measurement">
+          <Key>
+            <PropertyRef Name="unit_of_measurement_id" />
+          </Key>
+          <Property Name="unit_of_measurement_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="unit_of_measurement_name" Type="varchar" MaxLength="50" />
+          <Property Name="company_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="user_password" Type="varchar" MaxLength="50" />
+          <Property Name="employee_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_permission">
+          <Key>
+            <PropertyRef Name="user_permission_id" />
+          </Key>
+          <Property Name="user_permission_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_id" Type="uniqueidentifier" />
+          <Property Name="permission_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="user_profile_id" />
+          </Key>
+          <Property Name="user_profile_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_id" Type="uniqueidentifier" />
+          <Property Name="profile_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="sistema_control_comercioModelStoreContainer">
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventary" EntityType="Self.inventary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_method" EntityType="Self.payment_method" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_service" EntityType="Self.payment_service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_suppliers" EntityType="Self.payment_suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_suppliers_order" EntityType="Self.payment_suppliers_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="physical_location" EntityType="Self.physical_location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_rawmaterial" EntityType="Self.product_rawmaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profile" EntityType="Self.profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profile_permission" EntityType="Self.profile_permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profile_profile" EntityType="Self.profile_profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="raw_material" EntityType="Self.raw_material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sale" EntityType="Self.sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sale_order" EntityType="Self.sale_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="unit_of_measurement" EntityType="Self.unit_of_measurement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_permission" EntityType="Self.user_permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_profile" EntityType="Self.user_profile" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sistema_control_comercioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Guid" Nullable="false" />
+          <Property Name="category_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="company_id" />
+          </Key>
+          <Property Name="company_id" Type="Guid" Nullable="false" />
+          <Property Name="company_cuit" Type="Int32" />
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_cellphone" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Guid" Nullable="false" />
+          <Property Name="employee_dni" Type="Int32" />
+          <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employee_lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employee_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employee_cellphone" Type="Int32" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="inventary">
+          <Key>
+            <PropertyRef Name="inventary_id" />
+          </Key>
+          <Property Name="inventary_id" Type="Guid" Nullable="false" />
+          <Property Name="raw_material_id" Type="Guid" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="payment_method">
+          <Key>
+            <PropertyRef Name="payment_method_id" />
+          </Key>
+          <Property Name="payment_method_id" Type="Guid" Nullable="false" />
+          <Property Name="payment_method_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="payment_service">
+          <Key>
+            <PropertyRef Name="payment_service_id" />
+          </Key>
+          <Property Name="payment_service_id" Type="Guid" Nullable="false" />
+          <Property Name="service_id" Type="Guid" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="payment_service_price" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="payment_suppliers">
+          <Key>
+            <PropertyRef Name="payment_suppliers_id" />
+          </Key>
+          <Property Name="payment_suppliers_id" Type="Guid" Nullable="false" />
+          <Property Name="supplier_id" Type="Guid" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="payment_suppliers_cost" Type="Int32" />
+          <Property Name="payment_suppliers_pay" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="payment_suppliers_order">
+          <Key>
+            <PropertyRef Name="payment_suppliers_order_id" />
+          </Key>
+          <Property Name="payment_suppliers_order_id" Type="Guid" Nullable="false" />
+          <Property Name="payment_suppliers_id" Type="Guid" />
+          <Property Name="raw_material_id" Type="Guid" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="payment_suppliers_cost" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="Guid" Nullable="false" />
+          <Property Name="permission_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="physical_location">
+          <Key>
+            <PropertyRef Name="physical_location_id" />
+          </Key>
+          <Property Name="physical_location_id" Type="Guid" Nullable="false" />
+          <Property Name="physical_location_cuit" Type="Int32" />
+          <Property Name="physical_location_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="physical_location_cellphone" Type="Int32" />
+          <Property Name="physical_location_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Guid" Nullable="false" />
+          <Property Name="product_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_cost" Type="Int32" />
+          <Property Name="product_price" Type="Int32" />
+          <Property Name="category_id" Type="Guid" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="product_rawmaterial">
+          <Key>
+            <PropertyRef Name="product_rawmaterial_id" />
+          </Key>
+          <Property Name="product_rawmaterial_id" Type="Guid" Nullable="false" />
+          <Property Name="product_id" Type="Guid" />
+          <Property Name="raw_material_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="profile_id" />
+          </Key>
+          <Property Name="profile_id" Type="Guid" Nullable="false" />
+          <Property Name="profile_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="profile_permission">
+          <Key>
+            <PropertyRef Name="profile_permission_id" />
+          </Key>
+          <Property Name="profile_permission_id" Type="Guid" Nullable="false" />
+          <Property Name="profile_id" Type="Guid" />
+          <Property Name="permission_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="profile_profile">
+          <Key>
+            <PropertyRef Name="profile_profile_id" />
+          </Key>
+          <Property Name="profile_profile_id" Type="Guid" Nullable="false" />
+          <Property Name="profile_father_id" Type="Guid" />
+          <Property Name="profile_child_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="raw_material">
+          <Key>
+            <PropertyRef Name="raw_material_id" />
+          </Key>
+          <Property Name="raw_material_id" Type="Guid" Nullable="false" />
+          <Property Name="raw_material_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="raw_material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="raw_material_cost" Type="Int32" />
+          <Property Name="company_id" Type="Guid" />
+          <Property Name="unit_of_measurement_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="sale_id" />
+          </Key>
+          <Property Name="sale_id" Type="Guid" Nullable="false" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="employee_id" Type="Guid" />
+          <Property Name="sale_price" Type="Int32" />
+          <Property Name="payment_method_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sale_order">
+          <Key>
+            <PropertyRef Name="sale_order_id" />
+          </Key>
+          <Property Name="sale_order_id" Type="Guid" Nullable="false" />
+          <Property Name="sale_id" Type="Guid" />
+          <Property Name="product_id" Type="Guid" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="sale_order_price" Type="Int32" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="Guid" Nullable="false" />
+          <Property Name="service_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="service_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Guid" Nullable="false" />
+          <Property Name="supplier_cuit" Type="Int32" />
+          <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_cellphone" Type="Int32" />
+          <Property Name="supplier_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_debt" Type="Int32" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modificatrion_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="unit_of_measurement">
+          <Key>
+            <PropertyRef Name="unit_of_measurement_id" />
+          </Key>
+          <Property Name="unit_of_measurement_id" Type="Guid" Nullable="false" />
+          <Property Name="unit_of_measurement_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Guid" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employee_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user_permission">
+          <Key>
+            <PropertyRef Name="user_permission_id" />
+          </Key>
+          <Property Name="user_permission_id" Type="Guid" Nullable="false" />
+          <Property Name="user_id" Type="Guid" />
+          <Property Name="permission_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="user_profile_id" />
+          </Key>
+          <Property Name="user_profile_id" Type="Guid" Nullable="false" />
+          <Property Name="user_id" Type="Guid" />
+          <Property Name="profile_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="sistema_control_comercio" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="company" EntityType="Self.company" />
+          <EntitySet Name="employee" EntityType="Self.employee" />
+          <EntitySet Name="inventary" EntityType="Self.inventary" />
+          <EntitySet Name="payment_method" EntityType="Self.payment_method" />
+          <EntitySet Name="payment_service" EntityType="Self.payment_service" />
+          <EntitySet Name="payment_suppliers" EntityType="Self.payment_suppliers" />
+          <EntitySet Name="payment_suppliers_order" EntityType="Self.payment_suppliers_order" />
+          <EntitySet Name="permission" EntityType="Self.permission" />
+          <EntitySet Name="physical_location" EntityType="Self.physical_location" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="product_rawmaterial" EntityType="Self.product_rawmaterial" />
+          <EntitySet Name="profile" EntityType="Self.profile" />
+          <EntitySet Name="profile_permission" EntityType="Self.profile_permission" />
+          <EntitySet Name="profile_profile" EntityType="Self.profile_profile" />
+          <EntitySet Name="raw_material" EntityType="Self.raw_material" />
+          <EntitySet Name="sale" EntityType="Self.sale" />
+          <EntitySet Name="sale_order" EntityType="Self.sale_order" />
+          <EntitySet Name="service" EntityType="Self.service" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" />
+          <EntitySet Name="unit_of_measurement" EntityType="Self.unit_of_measurement" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="user_permission" EntityType="Self.user_permission" />
+          <EntitySet Name="user_profile" EntityType="Self.user_profile" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sistema_control_comercioModelStoreContainer" CdmEntityContainer="sistema_control_comercio">
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_code" ColumnName="category_code" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="company">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="company_cuit" ColumnName="company_cuit" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="company_address" ColumnName="company_address" />
+                <ScalarProperty Name="company_cellphone" ColumnName="company_cellphone" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="employee_dni" ColumnName="employee_dni" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="employee_lastname" ColumnName="employee_lastname" />
+                <ScalarProperty Name="employee_address" ColumnName="employee_address" />
+                <ScalarProperty Name="employee_cellphone" ColumnName="employee_cellphone" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventary">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.inventary">
+              <MappingFragment StoreEntitySet="inventary">
+                <ScalarProperty Name="inventary_id" ColumnName="inventary_id" />
+                <ScalarProperty Name="raw_material_id" ColumnName="raw_material_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_method">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_method">
+              <MappingFragment StoreEntitySet="payment_method">
+                <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+                <ScalarProperty Name="payment_method_name" ColumnName="payment_method_name" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_service">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_service">
+              <MappingFragment StoreEntitySet="payment_service">
+                <ScalarProperty Name="payment_service_id" ColumnName="payment_service_id" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="payment_service_price" ColumnName="payment_service_price" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_suppliers">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_suppliers">
+              <MappingFragment StoreEntitySet="payment_suppliers">
+                <ScalarProperty Name="payment_suppliers_id" ColumnName="payment_suppliers_id" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="payment_suppliers_cost" ColumnName="payment_suppliers_cost" />
+                <ScalarProperty Name="payment_suppliers_pay" ColumnName="payment_suppliers_pay" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_suppliers_order">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_suppliers_order">
+              <MappingFragment StoreEntitySet="payment_suppliers_order">
+                <ScalarProperty Name="payment_suppliers_order_id" ColumnName="payment_suppliers_order_id" />
+                <ScalarProperty Name="payment_suppliers_id" ColumnName="payment_suppliers_id" />
+                <ScalarProperty Name="raw_material_id" ColumnName="raw_material_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="payment_suppliers_cost" ColumnName="payment_suppliers_cost" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permission">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.permission">
+              <MappingFragment StoreEntitySet="permission">
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="permission_name" ColumnName="permission_name" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="physical_location">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.physical_location">
+              <MappingFragment StoreEntitySet="physical_location">
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="physical_location_cuit" ColumnName="physical_location_cuit" />
+                <ScalarProperty Name="physical_location_name" ColumnName="physical_location_name" />
+                <ScalarProperty Name="physical_location_cellphone" ColumnName="physical_location_cellphone" />
+                <ScalarProperty Name="physical_location_address" ColumnName="physical_location_address" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_code" ColumnName="product_code" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_cost" ColumnName="product_cost" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_rawmaterial">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.product_rawmaterial">
+              <MappingFragment StoreEntitySet="product_rawmaterial">
+                <ScalarProperty Name="product_rawmaterial_id" ColumnName="product_rawmaterial_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="raw_material_id" ColumnName="raw_material_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profile">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.profile">
+              <MappingFragment StoreEntitySet="profile">
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="profile_name" ColumnName="profile_name" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profile_permission">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.profile_permission">
+              <MappingFragment StoreEntitySet="profile_permission">
+                <ScalarProperty Name="profile_permission_id" ColumnName="profile_permission_id" />
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profile_profile">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.profile_profile">
+              <MappingFragment StoreEntitySet="profile_profile">
+                <ScalarProperty Name="profile_profile_id" ColumnName="profile_profile_id" />
+                <ScalarProperty Name="profile_father_id" ColumnName="profile_father_id" />
+                <ScalarProperty Name="profile_child_id" ColumnName="profile_child_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="raw_material">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.raw_material">
+              <MappingFragment StoreEntitySet="raw_material">
+                <ScalarProperty Name="raw_material_id" ColumnName="raw_material_id" />
+                <ScalarProperty Name="raw_material_code" ColumnName="raw_material_code" />
+                <ScalarProperty Name="raw_material_name" ColumnName="raw_material_name" />
+                <ScalarProperty Name="raw_material_cost" ColumnName="raw_material_cost" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sale">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.sale">
+              <MappingFragment StoreEntitySet="sale">
+                <ScalarProperty Name="sale_id" ColumnName="sale_id" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sale_order">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.sale_order">
+              <MappingFragment StoreEntitySet="sale_order">
+                <ScalarProperty Name="sale_order_id" ColumnName="sale_order_id" />
+                <ScalarProperty Name="sale_id" ColumnName="sale_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sale_order_price" ColumnName="sale_order_price" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="service_code" ColumnName="service_code" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="supplier_cuit" ColumnName="supplier_cuit" />
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="supplier_cellphone" ColumnName="supplier_cellphone" />
+                <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+                <ScalarProperty Name="supplier_debt" ColumnName="supplier_debt" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modificatrion_date" ColumnName="modificatrion_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unit_of_measurement">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.unit_of_measurement">
+              <MappingFragment StoreEntitySet="unit_of_measurement">
+                <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
+                <ScalarProperty Name="unit_of_measurement_name" ColumnName="unit_of_measurement_name" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_permission">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.user_permission">
+              <MappingFragment StoreEntitySet="user_permission">
+                <ScalarProperty Name="user_permission_id" ColumnName="user_permission_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_profile">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.user_profile">
+              <MappingFragment StoreEntitySet="user_profile">
+                <ScalarProperty Name="user_profile_id" ColumnName="user_profile_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

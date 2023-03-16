@@ -14,14 +14,6 @@ namespace Api_control_comercio.Models.BD
     
     public partial class company
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public company()
-        {
-            this.payment_method = new HashSet<payment_method>();
-            this.physical_location = new HashSet<physical_location>();
-            this.raw_material = new HashSet<raw_material>();
-        }
-    
         public System.Guid company_id { get; set; }
         public Nullable<int> company_cuit { get; set; }
         public string company_name { get; set; }
@@ -29,12 +21,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> company_cellphone { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment_method> payment_method { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<physical_location> physical_location { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<raw_material> raw_material { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Api_control_comercio.Models.BD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class sistema_control_comercioEntities : DbContext
+    public partial class sistema_control_comercio : DbContext
     {
-        public sistema_control_comercioEntities()
-            : base("name=sistema_control_comercioEntities")
+        public sistema_control_comercio()
+            : base("name=sistema_control_comercio")
         {
         }
     
@@ -45,7 +45,6 @@ namespace Api_control_comercio.Models.BD
         public virtual DbSet<sale_order> sale_order { get; set; }
         public virtual DbSet<service> service { get; set; }
         public virtual DbSet<supplier> supplier { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<unit_of_measurement> unit_of_measurement { get; set; }
         public virtual DbSet<user> user { get; set; }
         public virtual DbSet<user_permission> user_permission { get; set; }

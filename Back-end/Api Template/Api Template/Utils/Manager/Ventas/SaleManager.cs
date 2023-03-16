@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public void Add(sale obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.sale.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public List<sale> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.sale.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public sale GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.sale.ToList().Where(x => x.sale_id == id).FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.sale.Remove(obj);
                 db.SaveChanges();
@@ -65,7 +65,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public void Update(sale obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.sale.SingleOrDefault(b => b.sale_id == obj.sale_id);
                 if (obj_db == null) throw new NotFoundException();

@@ -41,7 +41,7 @@ namespace Api_control_comercio.Controllers.Pagos
         }
 
         [HttpGet]
-        public IHttpActionResult GetOne([FromBody] Guid id)
+        public IHttpActionResult GetOne([FromUri] Guid id)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Api_control_comercio.Controllers.Pagos
         }
 
         [HttpDelete]
-        public IHttpActionResult Remove([FromBody] Guid id)
+        public IHttpActionResult Remove([FromUri] Guid id)
         {
             try
             {

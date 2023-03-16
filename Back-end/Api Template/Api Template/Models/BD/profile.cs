@@ -14,27 +14,9 @@ namespace Api_control_comercio.Models.BD
     
     public partial class profile
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public profile()
-        {
-            this.profile_permission = new HashSet<profile_permission>();
-            this.profile_profile = new HashSet<profile_profile>();
-            this.profile_profile1 = new HashSet<profile_profile>();
-            this.user_profile = new HashSet<user_profile>();
-        }
-    
         public System.Guid profile_id { get; set; }
         public string profile_name { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<profile_permission> profile_permission { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<profile_profile> profile_profile { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<profile_profile> profile_profile1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user_profile> user_profile { get; set; }
     }
 }

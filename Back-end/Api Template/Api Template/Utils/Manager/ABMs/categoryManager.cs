@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(category obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.category.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<category> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.category.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public category GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.category.ToList().Where(x => x.category_id == id).FirstOrDefault();
 
@@ -56,8 +56,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.category.Attach(obj);
                 db.category.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(category obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.category.SingleOrDefault(b => b.category_id == obj.category_id);
                 if (obj_db == null) throw new NotFoundException();

@@ -28,7 +28,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(employee obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.employee.Add(obj);
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<employee> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.employee.ToList();
             }
@@ -45,7 +45,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public employee GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.employee.ToList().Where(x => x.employee_id == id).FirstOrDefault();
 
@@ -57,7 +57,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.employee.Remove(obj);
                 db.SaveChanges();
@@ -66,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(employee obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.employee.SingleOrDefault(b => b.employee_id == obj.employee_id);
                 if (obj_db == null) throw new NotFoundException();

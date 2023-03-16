@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(company obj)
         {
-            using(var db = new sistema_control_comercioEntities())
+            using(var db = new sistema_control_comercio())
             {
                 db.company.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<company> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.company.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public company GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.company.ToList().Where(x => x.company_id == id).FirstOrDefault();
 
@@ -56,8 +56,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using(var db = new sistema_control_comercioEntities())
+            using(var db = new sistema_control_comercio())
             {
+                db.company.Attach(obj);
                 db.company.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(company obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.company.SingleOrDefault(b => b.company_id == obj.company_id);
                 if (obj_db == null) throw new NotFoundException();

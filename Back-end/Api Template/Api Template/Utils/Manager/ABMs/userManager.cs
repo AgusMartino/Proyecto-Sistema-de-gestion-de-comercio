@@ -28,7 +28,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(user obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user.Add(obj);
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<user> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.user.ToList();
             }
@@ -45,7 +45,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public user GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.user.ToList().Where(x => x.user_id == id).FirstOrDefault();
 
@@ -57,7 +57,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.user.Remove(obj);
                 db.SaveChanges();
@@ -66,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(user obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.user.SingleOrDefault(b => b.user_id == obj.user_id);
                 if (obj_db == null) throw new NotFoundException();

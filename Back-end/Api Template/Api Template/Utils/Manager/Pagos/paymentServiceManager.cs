@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public void Add(payment_service obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.payment_service.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public List<payment_service> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.payment_service.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public payment_service GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.payment_service.ToList().Where(x => x.payment_service_id == id).FirstOrDefault();
 
@@ -56,8 +56,9 @@ namespace Api_control_comercio.Utils.Manager.Pagos
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.payment_service.Attach(obj);
                 db.payment_service.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public void Update(payment_service obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.payment_service.SingleOrDefault(b => b.payment_service_id == obj.payment_service_id);
                 if (obj_db == null) throw new NotFoundException();

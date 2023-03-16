@@ -27,7 +27,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(physical_location obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.physical_location.Add(obj);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<physical_location> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.physical_location.ToList();
             }
@@ -44,7 +44,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public physical_location GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.physical_location.ToList().Where(x => x.physical_location_id == id).FirstOrDefault();
 
@@ -56,8 +56,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.physical_location.Attach(obj);
                 db.physical_location.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,7 +66,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(physical_location obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.physical_location.SingleOrDefault(b => b.physical_location_id == obj.physical_location_id);
                 if (obj_db == null) throw new NotFoundException();

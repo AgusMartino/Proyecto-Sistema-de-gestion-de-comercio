@@ -20,8 +20,5 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> payment_service_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
-    
-        public virtual physical_location physical_location { get; set; }
-        public virtual service service { get; set; }
     }
 }

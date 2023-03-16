@@ -29,7 +29,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Add(supplier obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 db.supplier.Add(obj);
                 db.SaveChanges();
@@ -38,7 +38,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public List<supplier> GetAll()
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 return db.supplier.ToList();
             }
@@ -46,7 +46,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public supplier GetOne(Guid id)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj = db.supplier.ToList().Where(x => x.supplier_id == id).FirstOrDefault();
 
@@ -58,8 +58,9 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
+                db.supplier.Attach(obj);
                 db.supplier.Remove(obj);
                 db.SaveChanges();
             }
@@ -67,7 +68,7 @@ namespace Api_control_comercio.Utils.Manager.ABMs
 
         public void Update(supplier obj)
         {
-            using (var db = new sistema_control_comercioEntities())
+            using (var db = new sistema_control_comercio())
             {
                 var obj_db = db.supplier.SingleOrDefault(b => b.supplier_id == obj.supplier_id);
                 if (obj_db == null) throw new NotFoundException();
