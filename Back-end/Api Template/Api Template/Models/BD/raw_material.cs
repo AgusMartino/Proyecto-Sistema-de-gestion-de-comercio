@@ -18,7 +18,7 @@ namespace Api_control_comercio.Models.BD
         public string raw_material_code { get; set; }
         public string raw_material_name { get; set; }
         public Nullable<int> raw_material_cost { get; set; }
-        public Nullable<System.Guid> company_id { get; set; }
+        public Nullable<bool> enable { get; set; }
         public Nullable<System.Guid> unit_of_measurement_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }

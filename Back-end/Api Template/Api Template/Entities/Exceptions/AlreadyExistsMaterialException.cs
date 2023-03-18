@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Api_control_comercio.Entities.Exceptions
 {
-    public class AlreadyExistsException : Exception
+    public class AlreadyExistsMaterialException : Exception
     {
-        public AlreadyExistsException():base("Un usuario con ese nombre ya existe en la base de datos")
+        public AlreadyExistsMaterialException():base("Una materia prima con ese codigo ya existe")
         {
         }
     }

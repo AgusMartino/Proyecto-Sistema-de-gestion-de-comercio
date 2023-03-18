@@ -318,6 +318,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Contracts\IGenericRelationship.cs" />
     <Compile Include="Contracts\IGenericCRUD.cs" />
     <Compile Include="Controllers\ABMs\profilePermissionController.cs" />
     <Compile Include="Controllers\ABMs\profileProfileController.cs" />
@@ -326,7 +327,6 @@
     <Compile Include="Controllers\ABMs\productRawMaterialController.cs" />
     <Compile Include="Controllers\ABMs\inventaryController.cs" />
     <Compile Include="Controllers\ABMs\employeeController.cs" />
-    <Compile Include="Controllers\ABMs\companyController.cs" />
     <Compile Include="Controllers\ABMs\profileController.cs" />
     <Compile Include="Controllers\ABMs\permissionController.cs" />
     <Compile Include="Controllers\ABMs\physicalLocationController.cs" />
@@ -339,6 +339,7 @@
     <Compile Include="Controllers\ABMs\serviceController.cs" />
     <Compile Include="Controllers\ABMs\supplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Pagos\paymentEmployeeController.cs" />
     <Compile Include="Controllers\Pagos\paymentSupplierOrderController.cs" />
     <Compile Include="Controllers\Pagos\paymentSupplierController.cs" />
     <Compile Include="Controllers\Pagos\paymentServiceController.cs" />
@@ -346,15 +347,18 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\Ventas\saleController.cs" />
     <Compile Include="Controllers\Ventas\saleOrderController.cs" />
-    <Compile Include="Entities\Exceptions\AlreadyExistsException.cs" />
+    <Compile Include="Entities\ABMs\inventory\InventoryBody.cs" />
+    <Compile Include="Entities\ABMs\Product\productBodyGetOne.cs" />
+    <Compile Include="Entities\ABMs\Product\productBodyAdd.cs" />
+    <Compile Include="Entities\ABMs\Product_rawMaterial\product_rawMaterialBody.cs" />
+    <Compile Include="Entities\ABMs\rawMaterial\rawMaterialBodyAdd.cs" />
+    <Compile Include="Entities\Exceptions\AlreadyExistsMaterialException.cs" />
+    <Compile Include="Entities\Exceptions\AlreadyExistsProductException.cs" />
     <Compile Include="Entities\Exceptions\NotFoundException.cs" />
     <Compile Include="Entities\LoginBody.cs" />
     <Compile Include="Entities\LoginResponse.cs" />
     <Compile Include="Entities\UserPermissionsBody.cs" />
     <Compile Include="Models\BD\category.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BD\company.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BD\employee.cs">
@@ -378,6 +382,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BD\payment_employee.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BD\payment_method.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -505,8 +512,8 @@
     <Compile Include="Utils\Manager\ABMs\permissionManager.cs" />
     <Compile Include="Utils\Manager\ABMs\inventoryManager.cs" />
     <Compile Include="Utils\Manager\ABMs\employeeManager.cs" />
-    <Compile Include="Utils\Manager\ABMs\companyManager.cs" />
     <Compile Include="Utils\Manager\ABMs\categoryManager.cs" />
+    <Compile Include="Utils\Manager\Pagos\paymentEmployeeManager.cs" />
     <Compile Include="Utils\Manager\Ventas\SaleManager.cs" />
     <Compile Include="Utils\Manager\Ventas\SaleOrderManager.cs" />
     <Compile Include="Utils\Manager\Pagos\paymentSupplierOrderManager.cs" />
@@ -607,7 +614,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Entities\ABMs\" />
     <Folder Include="Entities\Pagos\" />
     <Folder Include="Entities\Ventas\" />
   </ItemGroup>

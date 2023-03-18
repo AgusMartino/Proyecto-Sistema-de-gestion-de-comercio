@@ -13,19 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="company">
-      <EntityTypeMapping TypeName="sistema_control_comercioModel.company">
-        <MappingFragment StoreEntitySet="company">
-          <ScalarProperty Name="company_id" ColumnName="company_id" />
-          <ScalarProperty Name="company_cuit" ColumnName="company_cuit" />
-          <ScalarProperty Name="company_name" ColumnName="company_name" />
-          <ScalarProperty Name="company_address" ColumnName="company_address" />
-          <ScalarProperty Name="company_cellphone" ColumnName="company_cellphone" />
-          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-          <ScalarProperty Name="modification_date" ColumnName="modification_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="employee">
       <EntityTypeMapping TypeName="sistema_control_comercioModel.employee">
         <MappingFragment StoreEntitySet="employee">
@@ -53,12 +40,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="payment_employee">
+      <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_employee">
+        <MappingFragment StoreEntitySet="payment_employee">
+          <ScalarProperty Name="payment_employee_id" ColumnName="payment_employee_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="payment_employee_price" ColumnName="payment_employee_price" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="payment_method">
       <EntityTypeMapping TypeName="sistema_control_comercioModel.payment_method">
         <MappingFragment StoreEntitySet="payment_method">
           <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
           <ScalarProperty Name="payment_method_name" ColumnName="payment_method_name" />
-          <ScalarProperty Name="company_id" ColumnName="company_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
@@ -69,7 +66,6 @@
         <MappingFragment StoreEntitySet="payment_service">
           <ScalarProperty Name="payment_service_id" ColumnName="payment_service_id" />
           <ScalarProperty Name="service_id" ColumnName="service_id" />
-          <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
           <ScalarProperty Name="payment_service_price" ColumnName="payment_service_price" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
@@ -120,7 +116,7 @@
           <ScalarProperty Name="physical_location_name" ColumnName="physical_location_name" />
           <ScalarProperty Name="physical_location_cellphone" ColumnName="physical_location_cellphone" />
           <ScalarProperty Name="physical_location_address" ColumnName="physical_location_address" />
-          <ScalarProperty Name="company_id" ColumnName="company_id" />
+          <ScalarProperty Name="physical_location_id_central" ColumnName="physical_location_id_central" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
@@ -191,7 +187,6 @@
           <ScalarProperty Name="raw_material_code" ColumnName="raw_material_code" />
           <ScalarProperty Name="raw_material_name" ColumnName="raw_material_name" />
           <ScalarProperty Name="raw_material_cost" ColumnName="raw_material_cost" />
-          <ScalarProperty Name="company_id" ColumnName="company_id" />
           <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
@@ -256,7 +251,6 @@
         <MappingFragment StoreEntitySet="unit_of_measurement">
           <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
           <ScalarProperty Name="unit_of_measurement_name" ColumnName="unit_of_measurement_name" />
-          <ScalarProperty Name="company_id" ColumnName="company_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>

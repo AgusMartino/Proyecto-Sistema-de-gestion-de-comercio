@@ -26,9 +26,9 @@ namespace Api_control_comercio.Models.BD
         }
     
         public virtual DbSet<category> category { get; set; }
-        public virtual DbSet<company> company { get; set; }
         public virtual DbSet<employee> employee { get; set; }
         public virtual DbSet<inventary> inventary { get; set; }
+        public virtual DbSet<payment_employee> payment_employee { get; set; }
         public virtual DbSet<payment_method> payment_method { get; set; }
         public virtual DbSet<payment_service> payment_service { get; set; }
         public virtual DbSet<payment_suppliers> payment_suppliers { get; set; }

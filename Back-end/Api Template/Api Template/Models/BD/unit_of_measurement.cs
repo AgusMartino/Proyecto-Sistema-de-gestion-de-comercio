@@ -16,7 +16,6 @@ namespace Api_control_comercio.Models.BD
     {
         public System.Guid unit_of_measurement_id { get; set; }
         public string unit_of_measurement_name { get; set; }
-        public Nullable<System.Guid> company_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }

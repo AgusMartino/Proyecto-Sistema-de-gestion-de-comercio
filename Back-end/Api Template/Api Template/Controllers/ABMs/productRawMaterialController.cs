@@ -22,46 +22,12 @@ namespace Api_control_comercio.Controllers.ABMs
         }
         #endregion
 
-        [HttpGet]
-        public IHttpActionResult GetAll()
-        {
-            try
-            {
-                return Ok(productRawMaterialManager.Current.GetAll());
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetOne([FromBody] Guid id)
-        {
-            try
-            {
-                return Ok(productRawMaterialManager.Current.GetOne(id));
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
-
         [HttpPost]
-        public IHttpActionResult Add([FromBody] product_rawmaterial product_Rawmaterial)
+        public IHttpActionResult Join(raw_material raw_material, product product, int quantity)
         {
             try
             {
-                productRawMaterialManager.Current.Add(product_Rawmaterial);
+                productRawMaterialManager.Current.Join(raw_material, product, quantity);
                 return Ok();
             }
             catch (NotFoundException)
@@ -74,13 +40,31 @@ namespace Api_control_comercio.Controllers.ABMs
             }
         }
 
-        [HttpPut]
-        public IHttpActionResult Update([FromBody] product_rawmaterial product_Rawmaterial)
+        [HttpGet]
+        public IHttpActionResult GetFamilia(raw_material obj)
         {
             try
             {
-                productRawMaterialManager.Current.Update(product_Rawmaterial);
+                productRawMaterialManager.Current.GetFamilia(obj);
                 return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetComponentes(product obj)
+        {
+            try
+            {
+                List<raw_material> raw_materials = productRawMaterialManager.Current.GetComponentes(obj);
+                return Ok(raw_materials);
             }
             catch (NotFoundException)
             {
@@ -93,11 +77,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpDelete]
-        public IHttpActionResult Remove([FromBody] Guid id)
+        public IHttpActionResult DeleteJoin(product obj)
         {
             try
             {
-                productRawMaterialManager.Current.Remove(id);
+                productRawMaterialManager.Current.DeleteJoin(obj);
                 return Ok();
             }
             catch (NotFoundException)

@@ -6,47 +6,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Api_control_comercio.Utils.Manager.ABMs
+namespace Api_control_comercio.Utils.Manager.Pagos
 {
-    public sealed class companyManager : IGenericCRUD<company>
+    public sealed class paymentEmployeeManager : IGenericCRUD<payment_employee>
     {
         #region singleton
-        private readonly static companyManager _instance = new companyManager();
-        public static companyManager Current
+        private readonly static paymentEmployeeManager _instance = new paymentEmployeeManager();
+        public static paymentEmployeeManager Current
         {
             get
             {
                 return _instance;
             }
         }
-        private companyManager()
+        private paymentEmployeeManager()
         {
             //Implent here the initialization of your singleton
         }
         #endregion
 
-        public void Add(company obj)
+        public void Add(payment_employee obj)
         {
-            using(var db = new sistema_control_comercio())
+            using (var db = new sistema_control_comercio())
             {
-                db.company.Add(obj);
+                db.payment_employee.Add(obj);
                 db.SaveChanges();
             }
         }
 
-        public List<company> GetAll()
+        public List<payment_employee> GetAll()
         {
             using (var db = new sistema_control_comercio())
             {
-                return db.company.ToList();
+                return db.payment_employee.ToList();
             }
         }
 
-        public company GetOne(Guid id)
+        public payment_employee GetOne(Guid id)
         {
             using (var db = new sistema_control_comercio())
             {
-                var obj = db.company.ToList().Where(x => x.company_id == id).FirstOrDefault();
+                var obj = db.payment_employee.ToList().Where(x => x.payment_employee_id == id).FirstOrDefault();
 
                 if (obj == null) throw new NotFoundException();
                 else return obj;
@@ -56,19 +56,19 @@ namespace Api_control_comercio.Utils.Manager.ABMs
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
-            using(var db = new sistema_control_comercio())
+            using (var db = new sistema_control_comercio())
             {
-                db.company.Attach(obj);
-                db.company.Remove(obj);
+                db.payment_employee.Attach(obj);
+                db.payment_employee.Remove(obj);
                 db.SaveChanges();
             }
         }
 
-        public void Update(company obj)
+        public void Update(payment_employee obj)
         {
             using (var db = new sistema_control_comercio())
             {
-                var obj_db = db.company.SingleOrDefault(b => b.company_id == obj.company_id);
+                var obj_db = db.payment_employee.SingleOrDefault(b => b.payment_employee_id == obj.payment_employee_id);
                 if (obj_db == null) throw new NotFoundException();
                 else
                 {

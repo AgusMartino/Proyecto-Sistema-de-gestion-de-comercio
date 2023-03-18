@@ -11,18 +11,6 @@
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="company">
-    <Key>
-      <PropertyRef Name="company_id" />
-    </Key>
-    <Property Name="company_id" Type="Guid" Nullable="false" />
-    <Property Name="company_cuit" Type="Int32" />
-    <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="company_cellphone" Type="Int32" />
-    <Property Name="creation_date" Type="DateTime" Precision="3" />
-    <Property Name="modification_date" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="employee">
     <Key>
       <PropertyRef Name="employee_id" />
@@ -48,13 +36,22 @@
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="payment_employee">
+    <Key>
+      <PropertyRef Name="payment_employee_id" />
+    </Key>
+    <Property Name="payment_employee_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" />
+    <Property Name="payment_employee_price" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="modification_date" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="payment_method">
     <Key>
       <PropertyRef Name="payment_method_id" />
     </Key>
     <Property Name="payment_method_id" Type="Guid" Nullable="false" />
     <Property Name="payment_method_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="company_id" Type="Guid" />
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
   </EntityType>
@@ -64,7 +61,6 @@
     </Key>
     <Property Name="payment_service_id" Type="Guid" Nullable="false" />
     <Property Name="service_id" Type="Guid" />
-    <Property Name="physical_location_id" Type="Guid" />
     <Property Name="payment_service_price" Type="Int32" />
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
@@ -111,7 +107,7 @@
     <Property Name="physical_location_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="physical_location_cellphone" Type="Int32" />
     <Property Name="physical_location_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="company_id" Type="Guid" />
+    <Property Name="physical_location_id_central" Type="Guid" />
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
   </EntityType>
@@ -176,7 +172,6 @@
     <Property Name="raw_material_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="raw_material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="raw_material_cost" Type="Int32" />
-    <Property Name="company_id" Type="Guid" />
     <Property Name="unit_of_measurement_id" Type="Guid" />
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
@@ -236,7 +231,6 @@
     </Key>
     <Property Name="unit_of_measurement_id" Type="Guid" Nullable="false" />
     <Property Name="unit_of_measurement_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="company_id" Type="Guid" />
     <Property Name="creation_date" Type="DateTime" Precision="3" />
     <Property Name="modification_date" Type="DateTime" Precision="3" />
   </EntityType>
@@ -273,9 +267,9 @@
   </EntityType>
   <EntityContainer Name="sistema_control_comercio" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="category" EntityType="Self.category" />
-    <EntitySet Name="company" EntityType="Self.company" />
     <EntitySet Name="employee" EntityType="Self.employee" />
     <EntitySet Name="inventary" EntityType="Self.inventary" />
+    <EntitySet Name="payment_employee" EntityType="Self.payment_employee" />
     <EntitySet Name="payment_method" EntityType="Self.payment_method" />
     <EntitySet Name="payment_service" EntityType="Self.payment_service" />
     <EntitySet Name="payment_suppliers" EntityType="Self.payment_suppliers" />

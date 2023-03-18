@@ -1,6 +1,7 @@
 ﻿using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
+using Api_control_comercio.Utils.Manager.Pagos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,25 +9,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Api_control_comercio.Controllers.ABMs
+namespace Api_control_comercio.Controllers.Pagos
 {
-    public class companyController : ApiController
+    public class paymentEmployeeController : ApiController
     {
         #region Singleton
-        private readonly static companyController _instance;
-        public static companyController Current { get { return _instance; } }
-        static companyController() { _instance = new companyController(); }
-        private companyController()
+        private readonly static paymentEmployeeController _instance;
+        public static paymentEmployeeController Current { get { return _instance; } }
+        static paymentEmployeeController() { _instance = new paymentEmployeeController(); }
+        private paymentEmployeeController()
         {
             //Implent here the initialization of your singleton
         }
         #endregion
+
         [HttpGet]
         public IHttpActionResult GetAll()
         {
             try
             {
-                return Ok(companyManager.Current.GetAll());
+                return Ok(paymentEmployeeManager.Current.GetAll());
             }
             catch (NotFoundException)
             {
@@ -43,7 +45,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                return Ok(companyManager.Current.GetOne(id));
+                return Ok(paymentEmployeeManager.Current.GetOne(id));
             }
             catch (NotFoundException)
             {
@@ -56,11 +58,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] company company)
+        public IHttpActionResult Add([FromBody] payment_employee payment_employee)
         {
             try
             {
-                companyManager.Current.Add(company);
+                paymentEmployeeManager.Current.Add(payment_employee);
                 return Ok();
             }
             catch (NotFoundException)
@@ -74,11 +76,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] company company)
+        public IHttpActionResult Update([FromBody] payment_employee payment_employee)
         {
             try
             {
-                companyManager.Current.Update(company);
+                paymentEmployeeManager.Current.Update(payment_employee);
                 return Ok();
             }
             catch (NotFoundException)
@@ -96,7 +98,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                companyManager.Current.Remove(id);
+                paymentEmployeeManager.Current.Remove(id);
                 return Ok();
             }
             catch (NotFoundException)

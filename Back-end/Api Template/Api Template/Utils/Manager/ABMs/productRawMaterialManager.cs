@@ -1,4 +1,5 @@
 ﻿using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities.ABMs.Product_rawMaterial;
 using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using System;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace Api_control_comercio.Utils.Manager.ABMs
 {
-    public sealed class productRawMaterialManager : IGenericCRUD<product_rawmaterial>
+    public sealed class productRawMaterialManager : IGenericRelatrionship<product_rawMaterialBody, product>
     {
         #region singleton
         private readonly static productRawMaterialManager _instance = new productRawMaterialManager();
@@ -24,57 +25,60 @@ namespace Api_control_comercio.Utils.Manager.ABMs
             //Implent here the initialization of your singleton
         }
         #endregion
-
-        public void Add(product_rawmaterial obj)
+        public void Join(product_rawMaterialBody product_rawMaterialBody, product product)
         {
+            product_rawmaterial product_Rawmaterial = new product_rawmaterial();
+            product_Rawmaterial.raw_material_id = product_rawMaterialBody.raw_material.raw_material_id;
+            product_Rawmaterial.product_id = product.product_id;
+            product_Rawmaterial.product_rawmaterial_id = Guid.NewGuid();
+            product_Rawmaterial.creation_date = DateTime.Now;
+            product_Rawmaterial.modification_date = DateTime.Now;
+            product_Rawmaterial.quantity = product_rawMaterialBody.quantity;
+
             using (var db = new sistema_control_comercio())
             {
-                db.product_rawmaterial.Add(obj);
+                db.product_rawmaterial.Add(product_Rawmaterial);
                 db.SaveChanges();
             }
         }
 
-        public List<product_rawmaterial> GetAll()
+        public List<product> GetFamilia(product_rawMaterialBody obj)
         {
-            using (var db = new sistema_control_comercio())
-            {
-                return db.product_rawmaterial.ToList();
-            }
+            throw new NotImplementedException();
         }
 
-        public product_rawmaterial GetOne(Guid id)
+        public List<product_rawMaterialBody> GetComponentes(product product)
         {
-            using (var db = new sistema_control_comercio())
+            List<product_rawMaterialBody> raw_Materials = new List<product_rawMaterialBody>();
+            using(var db = new sistema_control_comercio())
             {
-                var obj = db.product_rawmaterial.ToList().Where(x => x.product_rawmaterial_id == id).FirstOrDefault();
-
-                if (obj == null) throw new NotFoundException();
-                else return obj;
-            }
-        }
-
-        public void Remove(Guid id)
-        {
-            var obj = GetOne(id);
-            using (var db = new sistema_control_comercio())
-            {
-                db.product_rawmaterial.Remove(obj);
-                db.SaveChanges();
-            }
-        }
-
-        public void Update(product_rawmaterial obj)
-        {
-            using (var db = new sistema_control_comercio())
-            {
-                var obj_db = db.product_rawmaterial.SingleOrDefault(b => b.product_rawmaterial_id == obj.product_rawmaterial_id);
-                if (obj_db == null) throw new NotFoundException();
-                else
+                List<product_rawmaterial> product_rawmaterial = db.product_rawmaterial.Where(x => x.product_id == product.product_id).ToList();
+                foreach (var item in product_rawmaterial)
                 {
-                    db.Entry(obj_db).CurrentValues.SetValues(obj);
+                    product_rawMaterialBody product_RawMaterialBody = new product_rawMaterialBody();
+                    product_RawMaterialBody.raw_material = rawMaterialManager.Current.GetOne((Guid)item.raw_material_id);
+                    product_RawMaterialBody.quantity = (int)item.quantity;
+                    raw_Materials.Add(product_RawMaterialBody);
+                }
+                return raw_Materials;
+            }
+        }
+
+        public void DeleteJoin(product product)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                List<product_rawmaterial> product_rawmaterial = db.product_rawmaterial.Where(x => x.product_id == product.product_id).ToList();
+                foreach (var item in product_rawmaterial)
+                {
+                    db.product_rawmaterial.Attach(item);
+                    db.product_rawmaterial.Remove(item);
                     db.SaveChanges();
                 }
             }
         }
+        
+
+
     }
 }

@@ -12,13 +12,11 @@ namespace Api_control_comercio.Models.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class company
+    public partial class payment_employee
     {
-        public System.Guid company_id { get; set; }
-        public Nullable<int> company_cuit { get; set; }
-        public string company_name { get; set; }
-        public string company_address { get; set; }
-        public Nullable<int> company_cellphone { get; set; }
+        public System.Guid payment_employee_id { get; set; }
+        public Nullable<System.Guid> employee_id { get; set; }
+        public Nullable<int> payment_employee_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }

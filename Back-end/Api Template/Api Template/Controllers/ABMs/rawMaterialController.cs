@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Api_control_comercio.Entities.ABMs.rawMaterial;
+using Api_control_comercio.Entities.Exceptions;
+using Api_control_comercio.Models.BD;
+using Api_control_comercio.Utils.Manager.ABMs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +13,146 @@ namespace Api_control_comercio.Controllers.ABMs
 {
     public class rawMaterialController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        #region Singleton
+        private readonly static rawMaterialController _instance;
+        public static rawMaterialController Current { get { return _instance; } }
+        static rawMaterialController() { _instance = new rawMaterialController(); }
+        private rawMaterialController()
         {
-            return new string[] { "value1", "value2" };
+            //Implent here the initialization of your singleton
+        }
+        #endregion
+
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(rawMaterialManager.Current.GetAll());
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetOneId([FromUri] Guid id)
         {
-            return "value";
+            try
+            {
+                return Ok(rawMaterialManager.Current.GetOne(id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        public IHttpActionResult GetOneCode([FromUri] string code)
         {
+            try
+            {
+                return Ok(rawMaterialManager.Current.GetOneCode(code));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] rawMaterialBodyAdd raw_materialBody)
         {
+            try
+            {
+                if (!rawMaterialManager.Current.ValidationCode(raw_materialBody.raw_material_code))
+                {
+                    rawMaterialManager.Current.Add(new raw_material
+                    {
+                        raw_material_id = raw_materialBody.raw_material_id,
+                        raw_material_code = raw_materialBody.raw_material_code,
+                        raw_material_cost = raw_materialBody.raw_material_cost,
+                        raw_material_name = raw_materialBody.raw_material_name
+                    });
+                    inventaryController.Current.Add(new inventary
+                    {
+                        inventary_id = Guid.NewGuid(),
+                        raw_material_id = raw_materialBody.raw_material_id,
+                        quantity = 0,
+                        physical_location_id = raw_materialBody.physical_location_id
+                    });
+                    return Ok();
+                }
+                else
+                {
+                    throw new AlreadyExistsMaterialException();
+                }
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] raw_material raw_material)
         {
+            try
+            {
+                if (!rawMaterialManager.Current.ValidationCode(raw_material.raw_material_code))
+                {
+                    raw_material.modification_date = DateTime.Now;
+                    rawMaterialManager.Current.Update(raw_material);
+                    return Ok();
+                }
+                else
+                {
+                    throw new AlreadyExistsMaterialException();
+                }
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Remove([FromUri] Guid id)
+        {
+            try
+            {
+                rawMaterialManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

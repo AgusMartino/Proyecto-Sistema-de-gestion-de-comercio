@@ -22,6 +22,6 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> supplier_debt { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
-        public Nullable<System.DateTime> modificatrion_date { get; set; }
+        public Nullable<System.DateTime> modification_date { get; set; }
     }
 }

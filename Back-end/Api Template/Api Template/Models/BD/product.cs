@@ -21,6 +21,7 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> product_price { get; set; }
         public Nullable<System.Guid> category_id { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
+        public Nullable<bool> enable { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }
