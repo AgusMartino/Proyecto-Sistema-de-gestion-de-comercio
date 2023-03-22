@@ -41,11 +41,13 @@ namespace Api_control_comercio.Controllers.Ventas
         }
 
         [HttpGet]
-        public IHttpActionResult GetOne([FromBody] Guid id)
+        public IHttpActionResult GetOne([FromBody] Guid sale)
         {
             try
             {
-                return Ok(SaleOrderManager.Current.GetOne(id));
+                List<sale_order> saleOrders = new List<sale_order>();
+                saleOrders = SaleOrderManager.Current.GetOneSale(sale);
+                return Ok(saleOrders);
             }
             catch (NotFoundException)
             {
@@ -78,19 +80,7 @@ namespace Api_control_comercio.Controllers.Ventas
         [HttpPut]
         public IHttpActionResult Update([FromBody] sale_order sale_Order)
         {
-            try
-            {
-                SaleOrderManager.Current.Update(sale_Order);
-                return Ok();
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            throw new NotImplementedException();
         }
 
         [HttpDelete]

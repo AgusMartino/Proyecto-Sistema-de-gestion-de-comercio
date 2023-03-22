@@ -24,11 +24,11 @@ namespace Api_control_comercio.Controllers.Pagos
         #endregion
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAllLocation([FromUri]Guid Location)
         {
             try
             {
-                return Ok(paymentServiceManager.Current.GetAll());
+                return Ok(paymentServiceManager.Current.GetAllLocation(Location));
             }
             catch (NotFoundException)
             {
@@ -78,19 +78,7 @@ namespace Api_control_comercio.Controllers.Pagos
         [HttpPut]
         public IHttpActionResult Update([FromBody] payment_service payment_Service)
         {
-            try
-            {
-                paymentServiceManager.Current.Update(payment_Service);
-                return Ok();
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            throw new NotImplementedException();
         }
 
         [HttpDelete]

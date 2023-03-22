@@ -1,5 +1,0 @@
-Que significa cada clase:
-Entitis: Body de los metodos(request and response)
-Controller: Funciona como service, se generan los metodos http
-Manager: Funciona como la DAL, Escribe y Lee la BD
-Models: EntityFramework.

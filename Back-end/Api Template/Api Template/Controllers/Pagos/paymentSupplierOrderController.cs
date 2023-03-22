@@ -1,4 +1,6 @@
-﻿using Api_control_comercio.Entities.Exceptions;
+﻿using Api_control_comercio.Controllers.ABMs;
+using Api_control_comercio.Entities.ABMs.inventory;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
 using Api_control_comercio.Utils.Manager.Pagos;
@@ -41,11 +43,11 @@ namespace Api_control_comercio.Controllers.Pagos
         }
 
         [HttpGet]
-        public IHttpActionResult GetOne([FromBody] Guid id)
+        public IHttpActionResult GetAllPaymentSupplier([FromUri] Guid payment)
         {
             try
             {
-                return Ok(paymentSupplierOrderManager.Current.GetOne(id));
+                return Ok(paymentSupplierOrderManager.Current.GetAllPaymentSupllier(payment));
             }
             catch (NotFoundException)
             {
@@ -55,6 +57,12 @@ namespace Api_control_comercio.Controllers.Pagos
             {
                 return InternalServerError(ex);
             }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetOne([FromBody] Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         [HttpPost]
@@ -78,19 +86,7 @@ namespace Api_control_comercio.Controllers.Pagos
         [HttpPut]
         public IHttpActionResult Update([FromBody] payment_suppliers_order payment_Suppliers_Order)
         {
-            try
-            {
-                paymentSupplierOrderManager.Current.Update(payment_Suppliers_Order);
-                return Ok();
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            throw new NotImplementedException();
         }
 
         [HttpDelete]

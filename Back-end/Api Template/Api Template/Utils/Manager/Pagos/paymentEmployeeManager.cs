@@ -1,4 +1,5 @@
 ﻿using Api_control_comercio.Contracts;
+using Api_control_comercio.Entities.ABMs.Pagos;
 using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using System;
@@ -42,6 +43,26 @@ namespace Api_control_comercio.Utils.Manager.Pagos
             }
         }
 
+        public List<payment_employee> GetAllLocation(Guid location)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                var query = from x in db.payment_employee
+                            join y in db.employee on x.employee_id equals y.employee_id
+                            where y.physical_location_id == location
+                            select new payment_employee
+                            {
+                                payment_employee_id = x.payment_employee_id,
+                                employee_id = x.employee_id,
+                                payment_employee_price = x.payment_employee_price,
+                                creation_date = x.creation_date,
+                                modification_date = x.modification_date
+                            };
+                List<payment_employee> result = query.ToList();
+                return result;
+            }
+        }
+
         public payment_employee GetOne(Guid id)
         {
             using (var db = new sistema_control_comercio())
@@ -66,16 +87,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public void Update(payment_employee obj)
         {
-            using (var db = new sistema_control_comercio())
-            {
-                var obj_db = db.payment_employee.SingleOrDefault(b => b.payment_employee_id == obj.payment_employee_id);
-                if (obj_db == null) throw new NotFoundException();
-                else
-                {
-                    db.Entry(obj_db).CurrentValues.SetValues(obj);
-                    db.SaveChanges();
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

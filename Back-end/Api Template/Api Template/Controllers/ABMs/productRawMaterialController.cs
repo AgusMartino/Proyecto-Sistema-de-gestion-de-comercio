@@ -1,4 +1,5 @@
-﻿using Api_control_comercio.Entities.Exceptions;
+﻿using Api_control_comercio.Entities.ABMs.Product_rawMaterial;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
 using System;
@@ -23,11 +24,12 @@ namespace Api_control_comercio.Controllers.ABMs
         #endregion
 
         [HttpPost]
-        public IHttpActionResult Join(raw_material raw_material, product product, int quantity)
+        public IHttpActionResult Join(product_rawMaterialBody raw_material, product product)
         {
             try
             {
-                productRawMaterialManager.Current.Join(raw_material, product, quantity);
+                //Se registra el componente del producto
+                productRawMaterialManager.Current.Join(raw_material, product);
                 return Ok();
             }
             catch (NotFoundException)
@@ -41,10 +43,11 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpGet]
-        public IHttpActionResult GetFamilia(raw_material obj)
+        public IHttpActionResult GetFamilia(product_rawMaterialBody obj)
         {
             try
             {
+                //Se obtiene los la familia del componente
                 productRawMaterialManager.Current.GetFamilia(obj);
                 return Ok();
             }
@@ -63,7 +66,8 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                List<raw_material> raw_materials = productRawMaterialManager.Current.GetComponentes(obj);
+                //Se obtiene los componentes del producto
+                List<product_rawMaterialBody> raw_materials = productRawMaterialManager.Current.GetComponentes(obj);
                 return Ok(raw_materials);
             }
             catch (NotFoundException)
@@ -81,6 +85,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
+                //Se eliminan los componentes del producto
                 productRawMaterialManager.Current.DeleteJoin(obj);
                 return Ok();
             }

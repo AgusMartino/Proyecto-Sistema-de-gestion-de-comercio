@@ -36,10 +36,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public List<sale_order> GetAll()
         {
-            using (var db = new sistema_control_comercio())
-            {
-                return db.sale_order.ToList();
-            }
+            throw new NotImplementedException();
         }
 
         public sale_order GetOne(Guid id)
@@ -53,11 +50,23 @@ namespace Api_control_comercio.Utils.Manager.Ventas
             }
         }
 
+        public List<sale_order> GetOneSale(Guid id)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                List<sale_order> sale_Orders = db.sale_order.ToList().Where(x => x.sale_id == id).ToList();
+
+                if (sale_Orders == null) throw new NotFoundException();
+                else return sale_Orders;
+            }
+        }
+
         public void Remove(Guid id)
         {
             var obj = GetOne(id);
             using (var db = new sistema_control_comercio())
             {
+                db.sale_order.Attach(obj);
                 db.sale_order.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,16 +74,7 @@ namespace Api_control_comercio.Utils.Manager.Ventas
 
         public void Update(sale_order obj)
         {
-            using (var db = new sistema_control_comercio())
-            {
-                var obj_db = db.sale_order.SingleOrDefault(b => b.sale_order_id == obj.sale_order_id);
-                if (obj_db == null) throw new NotFoundException();
-                else
-                {
-                    db.Entry(obj_db).CurrentValues.SetValues(obj);
-                    db.SaveChanges();
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

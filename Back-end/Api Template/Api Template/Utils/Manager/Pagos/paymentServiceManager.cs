@@ -42,6 +42,26 @@ namespace Api_control_comercio.Utils.Manager.Pagos
             }
         }
 
+        public List<payment_service> GetAllLocation(Guid Location)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                var query = from x in db.payment_service
+                            join y in db.service on x.service_id equals y.service_id
+                            where y.physical_location_id == Location
+                            select new payment_service
+                            {
+                                payment_service_id = x.payment_service_id,
+                                payment_service_price = x.payment_service_price,
+                                creation_date = x.creation_date,
+                                modification_date = x.modification_date,
+                                service_id = x.service_id
+                            };
+                List<payment_service> result = query.ToList();
+                return result;
+            }
+        }
+
         public payment_service GetOne(Guid id)
         {
             using (var db = new sistema_control_comercio())

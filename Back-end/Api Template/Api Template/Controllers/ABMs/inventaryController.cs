@@ -1,4 +1,5 @@
-﻿using Api_control_comercio.Entities.Exceptions;
+﻿using Api_control_comercio.Entities.ABMs.inventory;
+using Api_control_comercio.Entities.Exceptions;
 using Api_control_comercio.Models.BD;
 using Api_control_comercio.Utils.Manager.ABMs;
 using System;
@@ -23,11 +24,11 @@ namespace Api_control_comercio.Controllers.ABMs
         #endregion
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAll([FromUri] Guid location)
         {
             try
             {
-                return Ok(inventoryManager.Current.GetAll());
+                return Ok(inventoryManager.Current.GetAllLocation(location));
             }
             catch (NotFoundException)
             {
@@ -56,8 +57,24 @@ namespace Api_control_comercio.Controllers.ABMs
             }
         }
 
+        public IHttpActionResult GetOneLocationMaterial([FromUri] Guid location, Guid material)
+        {
+            try
+            {
+                return Ok(inventoryManager.Current.GetOneLocationMaterial(location, material));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpPost]
-        public IHttpActionResult Add(inventary inventary)
+        public IHttpActionResult Add([FromBody]inventoryBody inventary)
         {
             try
             {
@@ -75,7 +92,7 @@ namespace Api_control_comercio.Controllers.ABMs
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] inventary inventary)
+        public IHttpActionResult Update([FromBody] inventoryBody inventary)
         {
             try
             {
@@ -98,6 +115,51 @@ namespace Api_control_comercio.Controllers.ABMs
             try
             {
                 inventoryManager.Current.Remove(id);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult AddInventary([FromBody] inventoryBody inventary)
+        {
+            try
+            {
+                inventoryBody inventoryOld = new inventoryBody();
+                inventoryOld = (inventoryBody)GetOne(inventary.Id);
+
+                inventary.quantity = inventoryOld.quantity + inventary.quantity;
+
+                Update(inventary);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        public IHttpActionResult RemoveInventary([FromBody] inventoryBody inventary)
+        {
+            try
+            {
+                inventoryBody inventoryOld = new inventoryBody();
+                inventoryOld = (inventoryBody)GetOne(inventary.Id);
+
+                inventary.quantity = inventoryOld.quantity - inventary.quantity;
+
+                Update(inventary);
                 return Ok();
             }
             catch (NotFoundException)

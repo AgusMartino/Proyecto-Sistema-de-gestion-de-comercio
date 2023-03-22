@@ -57,6 +57,7 @@ namespace Api_control_comercio.Controllers.ABMs
             }
         }
 
+        [HttpGet]
         public IHttpActionResult GetOneCode([FromUri] string code)
         {
             try
@@ -78,8 +79,10 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
+                //Se valida la existencia del codigo nuevo
                 if (!rawMaterialManager.Current.ValidationCode(raw_materialBody.raw_material_code))
                 {
+                    //Se Agrega la materia prima
                     rawMaterialManager.Current.Add(new raw_material
                     {
                         raw_material_id = raw_materialBody.raw_material_id,
@@ -87,6 +90,7 @@ namespace Api_control_comercio.Controllers.ABMs
                         raw_material_cost = raw_materialBody.raw_material_cost,
                         raw_material_name = raw_materialBody.raw_material_name
                     });
+                    //Se crea el inventario
                     inventaryController.Current.Add(new inventary
                     {
                         inventary_id = Guid.NewGuid(),
@@ -116,16 +120,9 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                if (!rawMaterialManager.Current.ValidationCode(raw_material.raw_material_code))
-                {
-                    raw_material.modification_date = DateTime.Now;
-                    rawMaterialManager.Current.Update(raw_material);
-                    return Ok();
-                }
-                else
-                {
-                    throw new AlreadyExistsMaterialException();
-                }
+                raw_material.modification_date = DateTime.Now;
+                rawMaterialManager.Current.Update(raw_material);
+                return Ok();
             }
             catch (NotFoundException)
             {
@@ -142,6 +139,7 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
+                //Se cambia el estado enable a false
                 rawMaterialManager.Current.Remove(id);
                 return Ok();
             }
@@ -153,6 +151,11 @@ namespace Api_control_comercio.Controllers.ABMs
             {
                 return InternalServerError(ex);
             }
+        }
+
+        internal raw_material GetOneId(Guid? raw_material_id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

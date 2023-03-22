@@ -49,6 +49,17 @@ namespace Api_control_comercio.Utils.Manager.ABMs
                 return products;
             }
         }
+        public List<product> GetAllProductPhysicalLocationCategory(Guid phisical_location_id, Guid category)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                List<product> products = new List<product>();
+                products = db.product.Where(x => x.physical_location_id == phisical_location_id &&
+                                            x.category_id == category 
+                                            && x.enable == true).ToList();
+                return products;
+            }
+        }
         public product GetOne(Guid id)
         {
             using (var db = new sistema_control_comercio())

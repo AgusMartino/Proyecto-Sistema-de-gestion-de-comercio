@@ -348,6 +348,7 @@
     <Compile Include="Controllers\Ventas\saleController.cs" />
     <Compile Include="Controllers\Ventas\saleOrderController.cs" />
     <Compile Include="Entities\ABMs\inventory\InventoryBody.cs" />
+    <Compile Include="Entities\ABMs\Product\productBodyGetAllCategory.cs" />
     <Compile Include="Entities\ABMs\Product\productBodyGetOne.cs" />
     <Compile Include="Entities\ABMs\Product\productBodyAdd.cs" />
     <Compile Include="Entities\ABMs\Product_rawMaterial\product_rawMaterialBody.cs" />
@@ -357,7 +358,10 @@
     <Compile Include="Entities\Exceptions\NotFoundException.cs" />
     <Compile Include="Entities\LoginBody.cs" />
     <Compile Include="Entities\LoginResponse.cs" />
+    <Compile Include="Entities\Pagos\paymentSupplierBody.cs" />
+    <Compile Include="Entities\Pagos\paymentEmployeeBody.cs" />
     <Compile Include="Entities\UserPermissionsBody.cs" />
+    <Compile Include="Entities\Ventas\saleBody.cs" />
     <Compile Include="Models\BD\category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -614,8 +618,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Entities\Pagos\" />
-    <Folder Include="Entities\Ventas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

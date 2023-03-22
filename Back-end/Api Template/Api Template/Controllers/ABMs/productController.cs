@@ -25,11 +25,30 @@ namespace Api_control_comercio.Controllers.ABMs
         #endregion
 
         [HttpGet]
-        public IHttpActionResult GetAll(Guid physical_location_id)
+        public IHttpActionResult GetAll([FromUri]Guid physical_location_id)
         {
             try
             {
+                //Obtiene todos los productos generados por el location que se pasa en parametro
                 return Ok(productManager.Current.GetAllProductPhysicalLocation(physical_location_id));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllCategory([FromBody] productBodyGetAllCategory productBodyGetAllCategory)
+        {
+            try
+            {
+                //Obtiene todos los productos generados por el location que se pasa en parametro
+                return Ok(productManager.Current.GetAllProductPhysicalLocationCategory(productBodyGetAllCategory.physical_location_id, productBodyGetAllCategory.category_id));
             }
             catch (NotFoundException)
             {
@@ -46,8 +65,10 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
+                //Obtiene un producto en especifico por su ID
                 productBodyGetOne productBodyGetOne = new productBodyGetOne();
                 product product = productManager.Current.GetOne(id);
+                //Se obtiene los componentes del producto
                 productBodyGetOne.raw_materials = (List<product_rawMaterialBody>)productRawMaterialController.Current.GetComponentes(product);
                 productBodyGetOne.product_id = product.product_id;
                 productBodyGetOne.product_name = product.product_name;
@@ -68,12 +89,15 @@ namespace Api_control_comercio.Controllers.ABMs
             }
         }
 
+        [HttpGet]
         public IHttpActionResult GetOneCode([FromUri] string code)
         {
             try
             {
+                //Obtiene un producto en especifico por su codigo
                 productBodyGetOne productBodyGetOne = new productBodyGetOne();
                 product product = productManager.Current.GetOneCode(code);
+                //Se obtiene los componentes del producto
                 productBodyGetOne.raw_materials = (List<product_rawMaterialBody>)productRawMaterialController.Current.GetComponentes(product);
                 productBodyGetOne.product_id = product.product_id;
                 productBodyGetOne.product_name = product.product_name;
@@ -99,8 +123,10 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
+                //Se valida que el codigo del producto nuevo sea inexistente
                 if (!productManager.Current.ValidationCode(productBody.product_code, productBody.physical_location_id))
                 {
+                    //Se realiza un mapeo de los datos trasmitidos
                     productBody.product_id = Guid.NewGuid();
                     product product = new product();
                     product.product_id = productBody.product_id;
@@ -110,12 +136,12 @@ namespace Api_control_comercio.Controllers.ABMs
                     product.product_cost = productBody.product_cost;
                     product.physical_location_id = productBody.physical_location_id;
                     product.category_id = productBody.category_id;
+                    //Se realiza el ingreso de los componentes del producto en la BD
                     foreach (var raw_material in productBody.raw_materials)
                     {
-                        raw_material raw_Material = new raw_material();
-                        raw_Material.raw_material_id = raw_material.raw_material_id;
-                        productRawMaterialController.Current.Join(raw_Material, product, raw_material.quantity);
+                        productRawMaterialController.Current.Join(raw_material, product);
                     }
+                    //Se registra el producto en la BD
                     productManager.Current.Add(product);
                     return Ok();
                 }
@@ -140,33 +166,28 @@ namespace Api_control_comercio.Controllers.ABMs
         {
             try
             {
-                if (!productManager.Current.ValidationCode(productBody.product_code, productBody.physical_location_id))
+                //Se mapea el producto
+                product product = new product
                 {
-                    product product = new product
-                    {
-                        product_id = productBody.product_id,
-                        product_name = productBody.product_name,
-                        product_code = productBody.product_code,
-                        product_price = productBody.product_price,
-                        product_cost = productBody.product_cost,
-                        physical_location_id = productBody.physical_location_id,
-                        category_id = productBody.category_id,
-                        modification_date = DateTime.Now,
-                    };
-                    productRawMaterialController.Current.DeleteJoin(product);
-                    foreach (var item in productBody.raw_materials)
-                    {
-                        raw_material raw_Material = new raw_material();
-                        raw_Material.raw_material_id = item.raw_material.raw_material_id;
-                        productRawMaterialController.Current.Join(raw_Material, product, item.quantity);
-                    }
-                    productManager.Current.Update(product);
-                    return Ok();
-                }
-                else
+                    product_id = productBody.product_id,
+                    product_name = productBody.product_name,
+                    product_code = productBody.product_code,
+                    product_price = productBody.product_price,
+                    product_cost = productBody.product_cost,
+                    physical_location_id = productBody.physical_location_id,
+                    category_id = productBody.category_id,
+                    modification_date = DateTime.Now,
+                };
+                //Se eliminan los componentes del producto
+                productRawMaterialController.Current.DeleteJoin(product);
+                //Se registran los nuevos componentes del producto
+                foreach (var item in productBody.raw_materials)
                 {
-                    throw new AlreadyExistsProductException();
+                    productRawMaterialController.Current.Join(item, product);
                 }
+                //Se actualiza el producto
+                productManager.Current.Update(product);
+                return Ok();
             }
             catch (NotFoundException)
             {

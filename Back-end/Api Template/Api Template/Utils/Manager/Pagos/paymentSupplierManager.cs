@@ -42,6 +42,22 @@ namespace Api_control_comercio.Utils.Manager.Pagos
             }
         }
 
+        public List<payment_suppliers> GetAllLocation(Guid Location)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                return db.payment_suppliers.Where(x => x.physical_location_id == Location).ToList();
+            }
+        }
+
+        public List<payment_suppliers> GetAllsupplier(Guid supplier)
+        {
+            using (var db = new sistema_control_comercio())
+            {
+                return db.payment_suppliers.Where(x => x.supplier_id == supplier).ToList();
+            }
+        }
+
         public payment_suppliers GetOne(Guid id)
         {
             using (var db = new sistema_control_comercio())
@@ -58,6 +74,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
             var obj = GetOne(id);
             using (var db = new sistema_control_comercio())
             {
+                db.payment_suppliers.Attach(obj);
                 db.payment_suppliers.Remove(obj);
                 db.SaveChanges();
             }
@@ -65,16 +82,7 @@ namespace Api_control_comercio.Utils.Manager.Pagos
 
         public void Update(payment_suppliers obj)
         {
-            using (var db = new sistema_control_comercio())
-            {
-                var obj_db = db.payment_suppliers.SingleOrDefault(b => b.payment_suppliers_id == obj.payment_suppliers_id);
-                if (obj_db == null) throw new NotFoundException();
-                else
-                {
-                    db.Entry(obj_db).CurrentValues.SetValues(obj);
-                    db.SaveChanges();
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }
