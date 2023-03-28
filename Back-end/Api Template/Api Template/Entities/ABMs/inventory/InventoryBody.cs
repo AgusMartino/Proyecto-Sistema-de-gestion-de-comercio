@@ -8,10 +8,9 @@ namespace Api_control_comercio.Entities.ABMs.inventory
 {
     public class inventoryBody
     {
-        public Guid Id { get; set; }
+        public inventary inventary { get; set; }
         public raw_material rawMaterial { get; set; }
-        public Guid physical_location_id { get; set; }
-        public int quantity { get; set; }
+        public Guid user_id { get; set; }
 
     }
 }

@@ -19,7 +19,7 @@ namespace Api_control_comercio.Models.BD
         public string supplier_name { get; set; }
         public Nullable<int> supplier_cellphone { get; set; }
         public string supplier_address { get; set; }
-        public Nullable<int> supplier_debt { get; set; }
+        public Nullable<decimal> supplier_debt { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }

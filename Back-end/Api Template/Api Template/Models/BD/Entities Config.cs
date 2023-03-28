@@ -33,9 +33,9 @@ namespace Api_control_comercio.Models.BD
             if (modification_date == DateTime.MinValue) modification_date = DateTime.Now;
         }
     }
-    public partial class employee
+    public partial class employeeBody
     {
-        public employee()
+        public employeeBody()
         {
             if (employee_id == Guid.Empty) employee_id = Guid.NewGuid();
             if (creation_date == DateTime.MinValue) creation_date = DateTime.Now;

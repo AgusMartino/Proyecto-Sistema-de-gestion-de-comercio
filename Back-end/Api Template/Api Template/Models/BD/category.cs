@@ -18,6 +18,7 @@ namespace Api_control_comercio.Models.BD
         public string category_code { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public string category_name { get; set; }
+        public Nullable<bool> enable { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }

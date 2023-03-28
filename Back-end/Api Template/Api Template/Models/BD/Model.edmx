@@ -13,6 +13,7 @@
           <Property Name="category_code" Type="varchar" MaxLength="50" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
           <Property Name="category_name" Type="varchar" MaxLength="50" />
+          <Property Name="enable" Type="bit" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -37,10 +38,21 @@
           </Key>
           <Property Name="inventary_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="raw_material_id" Type="uniqueidentifier" />
-          <Property Name="quantity" Type="int" />
+          <Property Name="quantity" Type="decimal" Precision="18" Scale="0" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="logs">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="log_type" Type="varchar" MaxLength="50" />
+          <Property Name="log_detail" Type="varchar" MaxLength="50" />
+          <Property Name="physical_location_id" Type="uniqueidentifier" />
+          <Property Name="user_id" Type="uniqueidentifier" />
+          <Property Name="creation_date" Type="datetime" />
         </EntityType>
         <EntityType Name="payment_employee">
           <Key>
@@ -48,7 +60,7 @@
           </Key>
           <Property Name="payment_employee_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="employee_id" Type="uniqueidentifier" />
-          <Property Name="payment_employee_price" Type="int" />
+          <Property Name="payment_employee_price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -67,7 +79,7 @@
           </Key>
           <Property Name="payment_service_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="service_id" Type="uniqueidentifier" />
-          <Property Name="payment_service_price" Type="int" />
+          <Property Name="payment_service_price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -78,8 +90,8 @@
           <Property Name="payment_suppliers_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="supplier_id" Type="uniqueidentifier" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
-          <Property Name="payment_suppliers_cost" Type="int" />
-          <Property Name="payment_suppliers_pay" Type="int" />
+          <Property Name="payment_suppliers_cost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="payment_suppliers_pay" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -90,8 +102,8 @@
           <Property Name="payment_suppliers_order_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="payment_suppliers_id" Type="uniqueidentifier" />
           <Property Name="raw_material_id" Type="uniqueidentifier" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="payment_suppliers_cost" Type="int" />
+          <Property Name="quantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="payment_suppliers_cost" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -114,6 +126,7 @@
           <Property Name="physical_location_cellphone" Type="int" />
           <Property Name="physical_location_address" Type="varchar" MaxLength="50" />
           <Property Name="physical_location_id_central" Type="uniqueidentifier" />
+          <Property Name="enable" Type="bit" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -124,8 +137,8 @@
           <Property Name="product_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="product_code" Type="varchar" MaxLength="50" />
           <Property Name="product_name" Type="varchar" MaxLength="50" />
-          <Property Name="product_cost" Type="int" />
-          <Property Name="product_price" Type="int" />
+          <Property Name="product_cost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="product_price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="category_id" Type="uniqueidentifier" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
           <Property Name="enable" Type="bit" />
@@ -139,7 +152,7 @@
           <Property Name="product_rawmaterial_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="product_id" Type="uniqueidentifier" />
           <Property Name="raw_material_id" Type="uniqueidentifier" />
-          <Property Name="quantity" Type="int" />
+          <Property Name="quantity" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -179,8 +192,10 @@
           <Property Name="raw_material_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="raw_material_code" Type="varchar" MaxLength="50" />
           <Property Name="raw_material_name" Type="varchar" MaxLength="50" />
-          <Property Name="raw_material_cost" Type="int" />
+          <Property Name="raw_material_cost" Type="decimal" Precision="18" Scale="0" />
           <Property Name="enable" Type="bit" />
+          <Property Name="raw_material_unit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="raw_material_equivalence" Type="decimal" Precision="18" Scale="0" />
           <Property Name="unit_of_measurement_id" Type="uniqueidentifier" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
@@ -192,7 +207,7 @@
           <Property Name="sale_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
           <Property Name="employee_id" Type="uniqueidentifier" />
-          <Property Name="sale_price" Type="int" />
+          <Property Name="sale_price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="payment_method_id" Type="uniqueidentifier" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
@@ -204,8 +219,8 @@
           <Property Name="sale_order_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="sale_id" Type="uniqueidentifier" />
           <Property Name="product_id" Type="uniqueidentifier" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="sale_order_price" Type="int" />
+          <Property Name="quantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="sale_order_price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
         </EntityType>
@@ -229,7 +244,7 @@
           <Property Name="supplier_name" Type="varchar" MaxLength="50" />
           <Property Name="supplier_cellphone" Type="int" />
           <Property Name="supplier_address" Type="varchar" MaxLength="50" />
-          <Property Name="supplier_debt" Type="int" />
+          <Property Name="supplier_debt" Type="decimal" Precision="18" Scale="0" />
           <Property Name="physical_location_id" Type="uniqueidentifier" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="modification_date" Type="datetime" />
@@ -279,6 +294,7 @@
           <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inventary" EntityType="Self.inventary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment_employee" EntityType="Self.payment_employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment_method" EntityType="Self.payment_method" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment_service" EntityType="Self.payment_service" Schema="dbo" store:Type="Tables" />
@@ -314,6 +330,7 @@
           <Property Name="category_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="physical_location_id" Type="Guid" />
           <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enable" Type="Boolean" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -338,10 +355,21 @@
           </Key>
           <Property Name="inventary_id" Type="Guid" Nullable="false" />
           <Property Name="raw_material_id" Type="Guid" />
-          <Property Name="quantity" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="physical_location_id" Type="Guid" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="logs">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Guid" Nullable="false" />
+          <Property Name="log_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="log_detail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="physical_location_id" Type="Guid" />
+          <Property Name="user_id" Type="Guid" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="payment_employee">
           <Key>
@@ -349,7 +377,7 @@
           </Key>
           <Property Name="payment_employee_id" Type="Guid" Nullable="false" />
           <Property Name="employee_id" Type="Guid" />
-          <Property Name="payment_employee_price" Type="Int32" />
+          <Property Name="payment_employee_price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -368,7 +396,7 @@
           </Key>
           <Property Name="payment_service_id" Type="Guid" Nullable="false" />
           <Property Name="service_id" Type="Guid" />
-          <Property Name="payment_service_price" Type="Int32" />
+          <Property Name="payment_service_price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -379,8 +407,8 @@
           <Property Name="payment_suppliers_id" Type="Guid" Nullable="false" />
           <Property Name="supplier_id" Type="Guid" />
           <Property Name="physical_location_id" Type="Guid" />
-          <Property Name="payment_suppliers_cost" Type="Int32" />
-          <Property Name="payment_suppliers_pay" Type="Int32" />
+          <Property Name="payment_suppliers_cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_suppliers_pay" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -391,8 +419,8 @@
           <Property Name="payment_suppliers_order_id" Type="Guid" Nullable="false" />
           <Property Name="payment_suppliers_id" Type="Guid" />
           <Property Name="raw_material_id" Type="Guid" />
-          <Property Name="quantity" Type="Int32" />
-          <Property Name="payment_suppliers_cost" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_suppliers_cost" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -415,6 +443,7 @@
           <Property Name="physical_location_cellphone" Type="Int32" />
           <Property Name="physical_location_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="physical_location_id_central" Type="Guid" />
+          <Property Name="enable" Type="Boolean" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -425,8 +454,8 @@
           <Property Name="product_id" Type="Guid" Nullable="false" />
           <Property Name="product_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="product_cost" Type="Int32" />
-          <Property Name="product_price" Type="Int32" />
+          <Property Name="product_cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="product_price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="category_id" Type="Guid" />
           <Property Name="physical_location_id" Type="Guid" />
           <Property Name="enable" Type="Boolean" />
@@ -440,7 +469,7 @@
           <Property Name="product_rawmaterial_id" Type="Guid" Nullable="false" />
           <Property Name="product_id" Type="Guid" />
           <Property Name="raw_material_id" Type="Guid" />
-          <Property Name="quantity" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -480,8 +509,10 @@
           <Property Name="raw_material_id" Type="Guid" Nullable="false" />
           <Property Name="raw_material_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="raw_material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="raw_material_cost" Type="Int32" />
+          <Property Name="raw_material_cost" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="enable" Type="Boolean" />
+          <Property Name="raw_material_unit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="raw_material_equivalence" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="unit_of_measurement_id" Type="Guid" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
@@ -493,7 +524,7 @@
           <Property Name="sale_id" Type="Guid" Nullable="false" />
           <Property Name="physical_location_id" Type="Guid" />
           <Property Name="employee_id" Type="Guid" />
-          <Property Name="sale_price" Type="Int32" />
+          <Property Name="sale_price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="payment_method_id" Type="Guid" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
@@ -505,8 +536,8 @@
           <Property Name="sale_order_id" Type="Guid" Nullable="false" />
           <Property Name="sale_id" Type="Guid" />
           <Property Name="product_id" Type="Guid" />
-          <Property Name="quantity" Type="Int32" />
-          <Property Name="sale_order_price" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sale_order_price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
         </EntityType>
@@ -530,7 +561,7 @@
           <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="supplier_cellphone" Type="Int32" />
           <Property Name="supplier_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="supplier_debt" Type="Int32" />
+          <Property Name="supplier_debt" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="physical_location_id" Type="Guid" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="modification_date" Type="DateTime" Precision="3" />
@@ -580,6 +611,7 @@
           <EntitySet Name="category" EntityType="Self.category" />
           <EntitySet Name="employee" EntityType="Self.employee" />
           <EntitySet Name="inventary" EntityType="Self.inventary" />
+          <EntitySet Name="logs" EntityType="Self.logs" />
           <EntitySet Name="payment_employee" EntityType="Self.payment_employee" />
           <EntitySet Name="payment_method" EntityType="Self.payment_method" />
           <EntitySet Name="payment_service" EntityType="Self.payment_service" />
@@ -615,6 +647,7 @@
                 <ScalarProperty Name="category_code" ColumnName="category_code" />
                 <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="enable" ColumnName="enable" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="modification_date" ColumnName="modification_date" />
               </MappingFragment>
@@ -645,6 +678,18 @@
                 <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="sistema_control_comercioModel.logs">
+              <MappingFragment StoreEntitySet="logs">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="log_type" ColumnName="log_type" />
+                <ScalarProperty Name="log_detail" ColumnName="log_detail" />
+                <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -725,6 +770,7 @@
                 <ScalarProperty Name="physical_location_cellphone" ColumnName="physical_location_cellphone" />
                 <ScalarProperty Name="physical_location_address" ColumnName="physical_location_address" />
                 <ScalarProperty Name="physical_location_id_central" ColumnName="physical_location_id_central" />
+                <ScalarProperty Name="enable" ColumnName="enable" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="modification_date" ColumnName="modification_date" />
               </MappingFragment>
@@ -798,6 +844,8 @@
                 <ScalarProperty Name="raw_material_name" ColumnName="raw_material_name" />
                 <ScalarProperty Name="raw_material_cost" ColumnName="raw_material_cost" />
                 <ScalarProperty Name="enable" ColumnName="enable" />
+                <ScalarProperty Name="raw_material_unit" ColumnName="raw_material_unit" />
+                <ScalarProperty Name="raw_material_equivalence" ColumnName="raw_material_equivalence" />
                 <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="modification_date" ColumnName="modification_date" />

@@ -20,6 +20,7 @@ namespace Api_control_comercio.Models.BD
         public Nullable<int> physical_location_cellphone { get; set; }
         public string physical_location_address { get; set; }
         public Nullable<System.Guid> physical_location_id_central { get; set; }
+        public Nullable<bool> enable { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }

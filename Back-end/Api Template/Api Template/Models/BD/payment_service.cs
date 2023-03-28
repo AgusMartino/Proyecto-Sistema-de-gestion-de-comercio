@@ -16,7 +16,7 @@ namespace Api_control_comercio.Models.BD
     {
         public System.Guid payment_service_id { get; set; }
         public Nullable<System.Guid> service_id { get; set; }
-        public Nullable<int> payment_service_price { get; set; }
+        public Nullable<decimal> payment_service_price { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }

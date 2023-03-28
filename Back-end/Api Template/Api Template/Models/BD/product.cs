@@ -17,8 +17,8 @@ namespace Api_control_comercio.Models.BD
         public System.Guid product_id { get; set; }
         public string product_code { get; set; }
         public string product_name { get; set; }
-        public Nullable<int> product_cost { get; set; }
-        public Nullable<int> product_price { get; set; }
+        public Nullable<decimal> product_cost { get; set; }
+        public Nullable<decimal> product_price { get; set; }
         public Nullable<System.Guid> category_id { get; set; }
         public Nullable<System.Guid> physical_location_id { get; set; }
         public Nullable<bool> enable { get; set; }

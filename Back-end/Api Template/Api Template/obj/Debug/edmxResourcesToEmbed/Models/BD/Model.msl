@@ -23,6 +23,7 @@
           <ScalarProperty Name="employee_address" ColumnName="employee_address" />
           <ScalarProperty Name="employee_cellphone" ColumnName="employee_cellphone" />
           <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+          <ScalarProperty Name="enable" ColumnName="enable" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
@@ -37,6 +38,18 @@
           <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="sistema_control_comercioModel.logs">
+        <MappingFragment StoreEntitySet="logs">
+          <ScalarProperty Name="log_id" ColumnName="log_id" />
+          <ScalarProperty Name="log_type" ColumnName="log_type" />
+          <ScalarProperty Name="log_detail" ColumnName="log_detail" />
+          <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +145,7 @@
           <ScalarProperty Name="product_price" ColumnName="product_price" />
           <ScalarProperty Name="category_id" ColumnName="category_id" />
           <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
+          <ScalarProperty Name="enable" ColumnName="enable" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
@@ -143,6 +157,7 @@
           <ScalarProperty Name="product_rawmaterial_id" ColumnName="product_rawmaterial_id" />
           <ScalarProperty Name="product_id" ColumnName="product_id" />
           <ScalarProperty Name="raw_material_id" ColumnName="raw_material_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
@@ -187,6 +202,9 @@
           <ScalarProperty Name="raw_material_code" ColumnName="raw_material_code" />
           <ScalarProperty Name="raw_material_name" ColumnName="raw_material_name" />
           <ScalarProperty Name="raw_material_cost" ColumnName="raw_material_cost" />
+          <ScalarProperty Name="enable" ColumnName="enable" />
+          <ScalarProperty Name="raw_material_unit" ColumnName="raw_material_unit" />
+          <ScalarProperty Name="raw_material_equivalence" ColumnName="raw_material_equivalence" />
           <ScalarProperty Name="unit_of_measurement_id" ColumnName="unit_of_measurement_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
@@ -242,7 +260,7 @@
           <ScalarProperty Name="supplier_debt" ColumnName="supplier_debt" />
           <ScalarProperty Name="physical_location_id" ColumnName="physical_location_id" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-          <ScalarProperty Name="modificatrion_date" ColumnName="modificatrion_date" />
+          <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -263,6 +281,7 @@
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />
           <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="enable" ColumnName="enable" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="modification_date" ColumnName="modification_date" />
         </MappingFragment>

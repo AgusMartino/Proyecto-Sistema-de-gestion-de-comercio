@@ -17,8 +17,8 @@ namespace Api_control_comercio.Models.BD
         public System.Guid payment_suppliers_order_id { get; set; }
         public Nullable<System.Guid> payment_suppliers_id { get; set; }
         public Nullable<System.Guid> raw_material_id { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> payment_suppliers_cost { get; set; }
+        public Nullable<decimal> quantity { get; set; }
+        public Nullable<decimal> payment_suppliers_cost { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
         public Nullable<System.DateTime> modification_date { get; set; }
     }
